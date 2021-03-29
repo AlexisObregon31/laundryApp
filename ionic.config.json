@@ -1,0 +1,7 @@
+{
+  "name": "laundryApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

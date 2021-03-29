@@ -1,0 +1,44 @@
+.lbl_info {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  text-align: center;
+}
+
+.alert-recupsena {
+  position: absolute;
+  top: 30%;
+  left: 20%;
+}
+
+.btn-enviar {
+  position: absolute;
+  top: 45%;
+  left: 26%;
+  border-radius: 6%;
+  letter-spacing: 0.05em;
+  font-family: sans-serif;
+  color: rgba(255, 255, 255, 0.89) !important;
+  font-size: 19px;
+  font-weight: 400;
+  background: #135ac5;
+  border-color: #084eb8;
+  background: linear-gradient(145deg, #5161f8c7, #014ab8);
+  box-shadow: 6px 6px 20px -1px #dcdde7,
+    -6px -6px 20px -1px #e3e4f0;
+}
+
+.btn-enviar:before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 0px;
+  height: 100%;
+  background: rgba(1, 115, 150, 0.432);
+  transition: all 1s ease;
+}
+
+.btn-enviar:hover:before {
+  width: 100%;
+}

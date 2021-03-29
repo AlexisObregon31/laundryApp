@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-thumbnail style=" position: absolute; left:75%; top:0%; width: 80px; height: 75px;">
+      <img src="assets/icon/iconlaundryapp.png">
+    </ion-thumbnail>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Email</ion-label>
+    <ion-input type="email" placeholder="ejemplo@gmail.com" [(ngModel)]="email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Contraseña</ion-label>
+    <ion-input type="password" [(ngModel)]="password"></ion-input>
+  </ion-item>
+  <ion-button (click)="login()" routerDirection="forward">Acceder</ion-button>
+  <ion-button routerLink="/registro" routerDirection="forward">Registrarse</ion-button>
+  <ion-button routerLink="/editar-perfil" routerDirection="forward">Olvidé mi constraseña</ion-button>
+</ion-content>

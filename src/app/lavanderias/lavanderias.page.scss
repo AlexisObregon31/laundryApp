@@ -1,0 +1,37 @@
+ion-title {
+  color: rgb(16, 95, 185);
+  position: absolute;
+  left: 10%;
+  top: 30%
+}
+
+.btn-login {
+  background-color: "none";
+  position: absolute;
+  left: 60%;
+  top: 12%;
+  width: 50px;
+  border-radius: 100%;
+  text-size-adjust: 10%;
+}
+
+ion-icon {
+  color: black;
+  width: 50px;
+}
+
+.lista ion-label {
+  position: absolute;
+  top: 0%;
+  color: rgb(1, 115, 150);
+  left: 27%;
+  font-size: 18px;
+  font-weight: 3px;
+}
+
+.lista img {
+  position: absolute;
+  left: 0%;
+  width: 74px;
+  max-width: 80px;
+}

@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-thumbnail style=" position: absolute; left:75%; top:0%; width: 80px; height: 75px;">
+      <img src="assets/icon/iconlaundryapp.png">
+    </ion-thumbnail>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Registrarse</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Nombre</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Email</ion-label>
+    <ion-input [(ngModel)]="email"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Contraseña</ion-label>
+    <ion-input type="password" [(ngModel)]="password"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Confirmar seña</ion-label>
+    <ion-input type="password"></ion-input>
+  </ion-item>
+
+  <ion-button style="background-color: rgb(21, 116, 206); justify-content: center; display: flex; border-radius: 6%;"
+    (click)="signup()" type="reset">Registrar
+  </ion-button>
+
+  <div>
+    <ion-label style=" color:rgb(21, 116, 206); position: absolute; top:50%; right: 21%;">¿Ya tienes un usuario?
+    </ion-label>
+  </div>
+
+  <ion-button color="none" routerLink="/login" routerDirection="forward" class="acceder">Acceder
+  </ion-button>
+
+</ion-content>

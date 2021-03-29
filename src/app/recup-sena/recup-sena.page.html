@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-thumbnail style=" position: absolute; left:75%; top:0%; width: 75px; height: 75px;">
+      <img src="assets/icon/iconlaundryapp.png">
+    </ion-thumbnail>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="position: absolute; left:11%; top:35%">¿Olvidó su seña?</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div style="position: absolute; top:32%; left:0%; width: 100%;">
+    <ion-item>
+      <ion-label></ion-label>
+      <ion-input style="text-align: center;" type="email" placeholder="ejemplo@gmail.com" [(ngModel)]="email">
+      </ion-input>
+    </ion-item>
+  </div>
+
+
+  <ion-button class="btn-enviar" color="none" (click)="recover()" routerDirection="forward">Enviar
+  </ion-button>
+  <ion-label class="lbl_info" color="primary">Cambiar contraseña
+    por correo</ion-label>
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/login" routerDirection="forward">
+      <ion-icon name="exit"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
