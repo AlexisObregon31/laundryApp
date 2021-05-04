@@ -6,8 +6,8 @@
   -o-background-size: cover;
   background-size: cover;
   background-position: center center;
-  height: 590px;
-  width: 287px;
+  height: 100%;
+  width: 100%;
   text-align: center;
   //position: relative;
   //display: inline-block;
@@ -18,7 +18,7 @@
 }
 
 div {
-  animation-duration: 5s;
+  animation-duration: 1s;
   animation-name: inicio;
 }
 
@@ -34,11 +34,14 @@ div {
 }
 
 .logo {
-  position: absolute;
-  left: 14%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  position: relative;
+  left: 0em;
   top: 45%;
-  width: 200px;
-  height: 100px;
+  width: 10em;
+  height: 6em;
   border-radius: 15%;
   background-position: center center;
   margin: 0 auto;
@@ -47,8 +50,12 @@ div {
 }
 
 .lbl_text {
-  position: absolute;
-  left: 13%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  position: relative;
+  background-position: center center;
+  margin: 0 auto;
+  left: 0em;
   top: 25%;
   color: rgb(0, 42, 156);
   font-size: 40px;

@@ -38,6 +38,18 @@ const routes: Routes = [
   {
     path: 'editar-perfil',
     loadChildren: () => import('./editar-perfil/editar-perfil.module').then(m => m.EditarPerfilPageModule)
+  },
+  {
+    path: 'perfil-empresa',
+    loadChildren: () => import('./perfil-empresa/perfil-empresa.module').then( m => m.PerfilEmpresaPageModule)
+  },
+  {
+    path: 'servicio-objeto',
+    loadChildren: () => import('./servicio-objeto/servicio-objeto.module').then( m => m.ServicioObjetoPageModule)
+  },
+  {
+    path: 'prueba-imagen',
+    loadChildren: () => import('./pages/prueba-imagen/prueba-imagen.module').then( m => m.PruebaImagenPageModule)
   }
 ];
 

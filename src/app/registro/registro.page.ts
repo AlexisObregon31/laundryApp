@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { UtilService } from './../services/util.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AlertController, NavController } from '@ionic/angular';
 
@@ -8,17 +9,31 @@ import { AlertController, NavController } from '@ionic/angular';
   styleUrls: ['./registro.page.scss'],
 })
 
-export class RegistroPage implements OnInit {
+export class RegistroPage implements OnInit, OnDestroy {
 
   email: string = "";
   password: string = "";
+  ipAdress: string = "";
+  suscripcion;
 
   constructor(
     private fireauth: AngularFireAuth,
     private navCtrl: NavController,
-    public alertController: AlertController) { }
+    public alertController: AlertController,
+    private utilservice: UtilService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.suscripcion = this.utilservice.getIpAdress().subscribe(text => {
+      console.log("Obteniendo IP Adress");
+      localStorage.setItem("ip", text);
+      this.ipAdress = text;
+    }
+    );
+  }
+
+  ngOnDestroy() {
+    this.suscripcion.unsubscribe();
+  }
 
   async avisoRegistro() {
     const alert = await this.alertController.create({
@@ -37,7 +52,8 @@ export class RegistroPage implements OnInit {
     this.fireauth.createUserWithEmailAndPassword(this.email, this.password).then(res => {
       if (res.user) {
         console.log("Registro con éxito el User= " + res.user.uid);
-        localStorage.setItem("Usuario:", res.user.uid);
+        localStorage.setItem("userUid", res.user.uid);
+        localStorage.setItem("tipoUsuario", "cliente");
         this.avisoRegistro();
         this.navCtrl.navigateForward('/lavanderias');
         //this.updateProfile();

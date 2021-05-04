@@ -13,13 +13,13 @@
 <ion-content>
   <ion-item>
     <ion-label>Email</ion-label>
-    <ion-input type="email" placeholder="ejemplo@gmail.com" [(ngModel)]="email"></ion-input>
+    <ion-input required="true" type="email" placeholder="ejemplo@gmail.com" [(ngModel)]="email"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Contraseña</ion-label>
-    <ion-input type="password" [(ngModel)]="password"></ion-input>
+    <ion-input required="true" type="password" [(ngModel)]="password"></ion-input>
   </ion-item>
   <ion-button (click)="login()" routerDirection="forward">Acceder</ion-button>
   <ion-button routerLink="/registro" routerDirection="forward">Registrarse</ion-button>
-  <ion-button routerLink="/editar-perfil" routerDirection="forward">Olvidé mi constraseña</ion-button>
+  <ion-button routerLink="/recup-sena" routerDirection="forward">Olvidé mi constraseña</ion-button>
 </ion-content>

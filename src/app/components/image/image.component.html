@@ -1,0 +1,24 @@
+<div class="card" style="width:25rem">
+  <div class="card-body">
+    <form (formGroup)="formTemplate"></form>
+    <img [src]="imgSrc">
+    <div class="form-group">
+      <label>Selecionar archivo a subir</label>
+      <input type="file" class="form-control" formControlName="imageUrl" (change)="showPreview($event)">
+    </div>
+    <div class="form-group">
+      <input class="form-control" formControlName="caption" placeholder="Caption">
+    </div>
+    <div class="form-group">
+      <select class="form-control" formControlName="category">
+        <option value="perfil" selected>Perfil</option>
+        <option value="opcion2">Opcion2</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btnEnviar">Enviar</button>
+
+    </div>
+  </div>
+
+</div>

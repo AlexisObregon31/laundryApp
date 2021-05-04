@@ -1,3 +1,4 @@
+import { AngularFireAuth } from '@angular/fire/auth';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LavanderiasPage implements OnInit {
 
-  constructor() { }
+  constructor() {
+    this.btnUsuario();
+  }
 
   ngOnInit() {
   }
+  emailUser;
+  usuarioLogueado;
+  loginOrPerfil;
 
+  btnUsuario() {
+    this.emailUser = localStorage.getItem("emailUser");
+    console.log('Esta logueado el usuario? -->  ' + this.emailUser);
+    if (this.emailUser != null) {
+      this.loginOrPerfil = '/editar-perfil';
+    } else {
+      this.loginOrPerfil = '/login';
+    }
+    }
 }

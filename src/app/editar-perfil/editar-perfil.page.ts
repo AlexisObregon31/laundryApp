@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { FirestorageService } from './../services/firestorage.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AlertController, NavController } from '@ionic/angular';
-import { Firebase } from 'ionic-native';
-import { User } from '../interfaces/user';
+
+
 
 @Component({
   selector: 'app-editar-perfil',
@@ -11,26 +12,45 @@ import { User } from '../interfaces/user';
 })
 export class EditarPerfilPage implements OnInit {
 
-  user: string = "";
+  //user: string = "";
   //userProfile = Firebase.database().ref('/userProfile');
+
+  /*@ViewChild('filebtn') filebtn: {
+    nativeElement: HTMLInputElement
+  };*/
+
+
+  public mensajeArchivo = 'No hay un archivo seleccionado';
+  public datosFormulario = new FormData();
+  public nombreArchivo = '';
+  public URLPublica = '';
+  public porcentaje = 0;
+  public finalizado = false;
 
   constructor(
     private fireauth: AngularFireAuth,
     private navCtrl: NavController,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private firestorageService: FirestorageService
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
+
+
+  /*async newImageUpload(event: any) {
+    const path = 'usuarios';
+    const nombre = 'prueba';
+    const file = event.target.files[0];
+    const res = await this.firestorageService.uploadImage(file, path, nombre);
+    console.log('Recibiendo res de la promesa=  ', res);
+  }*/
+
 
   /*updateUsername() {
-    this.user.updateProfile({
-      displayName: this.username
-    })
-      .then((data) => {
+    this.user.updateProfile({displayName: this.username}).then((data) => {
         console.log(data);
         this.username = '';
-        this.presentToast('Username updated', 'bottom', 1000);
+        this.presentToast('Nombre de usuario modificado !', 'bottom', 1000);
         this.error = '';
       })
       .catch(err => {
@@ -68,7 +88,10 @@ export class EditarPerfilPage implements OnInit {
   logout() {
     this.fireauth.signOut().then(() => {
       this.navCtrl.navigateForward('/lavanderias');
-      localStorage.removeItem;
+      localStorage.removeItem('userUid');
+      localStorage.removeItem('emailUser');
+      localStorage.removeItem('tipoUsuario');
+      console.log('Cerrando sesion...');
     });
   }
 

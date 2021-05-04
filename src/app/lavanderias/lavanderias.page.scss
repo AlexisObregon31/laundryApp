@@ -21,17 +21,24 @@ ion-icon {
 }
 
 .lista ion-label {
-  position: absolute;
+  position: relative;
+  margin: 0 auto;
+  background-size: cover;
   top: 0%;
   color: rgb(1, 115, 150);
-  left: 27%;
-  font-size: 18px;
+  left: 1em;
+  font-size: 16px;
   font-weight: 3px;
+  size: auto;
 }
 
 .lista img {
-  position: absolute;
+  position: relative;
+  margin: 0 auto;
+  background-size: cover;
   left: 0%;
   width: 74px;
   max-width: 80px;
+  margin: 0 auto;
+  size: auto;
 }

@@ -6,23 +6,23 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Editar Perfil</ion-title>
+    <ion-title>Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content  [fullscreen] style="margin:auto;">
+  <!--<ion-img class="avatar-perfil"></ion-img>
+  <form name="subir-imagen" type="POST" enctype="multipart/formdata">
+    <ion-input type="file" name="imagen"></ion-input>
+  </form>
+  <ion-input type="submit" name="subir-imagen">Guardar Imagen</ion-input>-->
 
-  <ion-item>
-    <ion-label>Nombre</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
+  <ion-button color="none" style="position: relative; top: 5%;">
+    <ion-img class="img-perfil">
+    </ion-img>
+  </ion-button>
 
-  <ion-item>
-    <ion-label>Email</ion-label>
-    <ion-input [(ngModel)]="user"></ion-input>
-  </ion-item>
 
   <ion-button class="btn-logout" color="none" (click)="logout()">Cerrar Sesión
   </ion-button>
-
 </ion-content>
