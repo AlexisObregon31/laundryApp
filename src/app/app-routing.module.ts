@@ -41,15 +41,19 @@ const routes: Routes = [
   },
   {
     path: 'perfil-empresa',
-    loadChildren: () => import('./perfil-empresa/perfil-empresa.module').then( m => m.PerfilEmpresaPageModule)
+    loadChildren: () => import('./perfil-empresa/perfil-empresa.module').then(m => m.PerfilEmpresaPageModule)
   },
   {
     path: 'servicio-objeto',
-    loadChildren: () => import('./servicio-objeto/servicio-objeto.module').then( m => m.ServicioObjetoPageModule)
+    loadChildren: () => import('./servicio-objeto/servicio-objeto.module').then(m => m.ServicioObjetoPageModule)
   },
   {
     path: 'prueba-imagen',
-    loadChildren: () => import('./pages/prueba-imagen/prueba-imagen.module').then( m => m.PruebaImagenPageModule)
+    loadChildren: () => import('./prueba-imagen/prueba-imagen.module').then(m => m.PruebaImagenPageModule)
+  },
+  {
+    path: 'imagen-prueba',
+    loadChildren: () => import('./imagen-prueba/imagen-prueba.module').then( m => m.ImagenPruebaPageModule)
   }
 ];
 

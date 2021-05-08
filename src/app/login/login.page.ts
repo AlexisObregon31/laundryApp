@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController, AlertController } from '@ionic/angular';
 import { FirebaseService } from './../services/firebase.service';
 import { Usuario } from '../interfaces/usuario';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 
@@ -39,37 +40,38 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
 
-  login() {
-    console.log("Logueando usuario...");
-    this.fireauth.signInWithEmailAndPassword(this.email, this.password).then(res => {
-      if (res.user) {
-        localStorage.setItem("userUid", res.user.uid);
-        localStorage.setItem("tipoUsuario", "cliente");
-        localStorage.setItem("emailUser",this.email);
-        console.log("Logueado exitosamente: " + this.email);
-        this.consultarDatosUsuario("usuarios", "uid", "==", localStorage.getItem("userUid"));
-        this.headerAlert="Bienvenido !"
-        this.avisoLogin();
-        this.navCtrl.navigateForward('/lavanderias');
-      }
-    })
-      .catch(err => {
-        this.headerAlert = "El Usuario no Existe !"
-        this.avisoLogin();
-        console.log(`login failed ${err}`);
-        //this.error = err.message;
-      });
-  }
 
-  usuario: Usuario;
-  consultarDatosUsuario(coleccion, campo, condicion, valor) {
-    this.firebaseService.consultar(coleccion, campo, condicion, valor).subscribe((resConsultaUser) => {
-      this.usuario = {} as Usuario;
-      resConsultaUser.forEach((datosUser: any) => {
-        this.usuario.nombre = datosUser.payload.doc.data().nombre;
-        localStorage.setItem("nombre", this.usuario.nombre);
-      })
+login() {
+  console.log("Logueando usuario...");
+  this.fireauth.signInWithEmailAndPassword(this.email, this.password).then(res => {
+    if (res.user) {
+      localStorage.setItem("userUid", res.user.uid);
+      localStorage.setItem("tipoUsuario", "cliente");
+      localStorage.setItem("emailUser", this.email);
+      console.log("Logueado exitosamente: " + this.email);
+      this.consultarDatosUsuario("usuarios", "uid", "==", localStorage.getItem("userUid"));
+      this.headerAlert = "Bienvenido !"
+      this.avisoLogin();
+      this.navCtrl.navigateForward('/lavanderias');
+    }
+  })
+    .catch(err => {
+      this.headerAlert = "El Usuario no Existe !"
+      this.avisoLogin();
+      console.log(`login failed ${err}`);
+      //this.error = err.message;
     });
-  }
+}
+
+usuario: Usuario;
+consultarDatosUsuario(coleccion, campo, condicion, valor) {
+  this.firebaseService.consultar(coleccion, campo, condicion, valor).subscribe((resConsultaUser) => {
+    this.usuario = {} as Usuario;
+    resConsultaUser.forEach((datosUser: any) => {
+      this.usuario.nombre = datosUser.payload.doc.data().nombre;
+      localStorage.setItem("nombre", this.usuario.nombre);
+    })
+  });
+}
 
 }

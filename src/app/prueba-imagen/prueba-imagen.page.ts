@@ -1,25 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { FileReader } from 'ionic-native';
 
 @Component({
-  selector: 'app-image',
-  templateUrl: './image.component.html',
-  styleUrls: ['./image.component.scss'],
+  selector: 'app-prueba-imagen',
+  templateUrl: './prueba-imagen.page.html',
+  styleUrls: ['./prueba-imagen.page.scss'],
 })
-export class ImageComponent implements OnInit {
+export class PruebaImagenPage implements OnInit {
 
-  formTemplate = new FormGroup({
+
+  /*formTemplate = new FormGroup({
     caption: new FormControl(''),
     category: new FormControl(''),
     imageUrl: new FormControl('')
-  });
+  });*/
 
   constructor() { }
 
   ngOnInit() { }
 
-  imgSrc: String = "";
+  /*imgSrc: String = "";
   selectedImage: any = null;
 
   showPreview(event: any) {
@@ -29,9 +29,8 @@ export class ImageComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
       this.selectedImage = event.target.files[0];
     } else {
-      this.imgSrc = '/assets/img/image_placeholder.jpg';
+      this.imgSrc = "/assets/img/imagePlaceholder.jpg";
       this.selectedImage = null;
     }
-  }
-
+  }*/
 }
