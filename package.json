@@ -30,7 +30,7 @@
     "angularfire2": "^5.4.2",
     "brace-expansion": "^2.0.1",
     "cordova-plugins": "^1.0.0",
-    "firebase": "^8.4.2",
+    "firebase": "^8.5.0",
     "ionic-native": "^2.9.0",
     "rxjs": "^6.6.0",
     "rxjs-compat": "^6.6.0",

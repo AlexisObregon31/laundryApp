@@ -1,7 +1,11 @@
+import { FirebaseService } from './../services/firebase.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { FirestorageService } from './../services/firestorage.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AlertController, NavController } from '@ionic/angular';
+import * as firebase from 'firebase/app';
+import { Usuario } from '../interfaces/usuario';
 
 
 
@@ -10,79 +14,74 @@ import { AlertController, NavController } from '@ionic/angular';
   templateUrl: './editar-perfil.page.html',
   styleUrls: ['./editar-perfil.page.scss'],
 })
-export class EditarPerfilPage implements OnInit {
+export class EditarPerfilPage implements OnInit, OnDestroy {
 
-  //user: string = "";
-  //userProfile = Firebase.database().ref('/userProfile');
-
-  /*@ViewChild('filebtn') filebtn: {
-    nativeElement: HTMLInputElement
-  };*/
-
-
-  public mensajeArchivo = 'No hay un archivo seleccionado';
+  usuario: Usuario;
   public datosFormulario = new FormData();
   public nombreArchivo = '';
-  public URLPublica = '';
-  public porcentaje = 0;
-  public finalizado = false;
+  perfil: any;
+  usuNombre;
+  imagenUrlPerfil;
+  emailPerfil;
+
+  consultarDatos;
+  usuEmail: any;
+  usuUrlFoto: any;
+  usuCelular: any;
+  usuDireccion: any;
 
   constructor(
     private fireauth: AngularFireAuth,
     private navCtrl: NavController,
     public alertController: AlertController,
-    private firestorageService: FirestorageService
-  ) { }
+    private firestorageService: FirestorageService,
+    private database: AngularFirestore,
+    private firebaseService: FirebaseService
+  ) { this.consultarDatosUsuario("usuarios", "uid", "==", localStorage.getItem("userUid")); }
 
-  ngOnInit() { }
-
-
-  /*async newImageUpload(event: any) {
-    const path = 'usuarios';
-    const nombre = 'prueba';
-    const file = event.target.files[0];
-    const res = await this.firestorageService.uploadImage(file, path, nombre);
-    console.log('Recibiendo res de la promesa=  ', res);
-  }*/
-
-
-  /*updateUsername() {
-    this.user.updateProfile({displayName: this.username}).then((data) => {
-        console.log(data);
-        this.username = '';
-        this.presentToast('Nombre de usuario modificado !', 'bottom', 1000);
-        this.error = '';
-      })
-      .catch(err => {
-        console.log(` failed ${err}`);
-        this.error = err.message;
-      });
+  ngOnInit() {
   }
 
-  updateImage() {
-
-    this.user.updateProfile({
-      photoURL: `https://picsum.photos/id/${this.image}/200/200`
-    })
-      .then((data) => {
-        console.log(data);
-        this.image = null;
-        this.presentToast('Image updated', 'bottom', 1000);
-        this.error = '';
-      })
-      .catch(err => {
-        console.log(` failed ${err}`);
-        this.error = err.message;
-      });
+  ngOnDestroy() {
   }
-  async presentToast(message, position, duration) {
-    const toast = await this.toastController.create({
-      message,
-      duration,
-      position
+
+  /*cargarDatos() {
+    this.fireauth.onAuthStateChanged(res => {
+      console.log("AUTH_USER", res);
+      if (res) {
+        //const result = this.database.doc(`/usuarios/${localStorage.getItem("userUid")}`);
+        //this.consultarDatosUsuario('usuarios', 'uid', '=', localStorage.getItem("userUid"));
+        var userProfile = result.valueChanges();
+        userProfile.subscribe(perfil => {
+          console.log("Perfil:", perfil);
+          this.nombrePerfil = perfil['nombre'];
+          this.imagenUrlPerfil = perfil['urlFoto'];
+          this.emailPerfil = perfil['email'];
+        })
+      }
     });
-    toast.present();
   }*/
+
+
+  consultarDatosUsuario(coleccion, campo, condicion, valor) {
+
+    this.firebaseService.consultar(coleccion, campo, condicion, valor).subscribe((resConsultaUser) => {
+      this.usuario = {} as Usuario;
+      resConsultaUser.forEach((datosUser: any) => {
+        this.usuNombre = datosUser.payload.doc.data().nombre;
+        this.usuEmail = datosUser.payload.doc.data().email;
+        this.usuUrlFoto = datosUser.payload.doc.data().urlFoto;
+        this.usuCelular = datosUser.payload.doc.data().celular;
+        this.usuDireccion = datosUser.payload.doc.data().direccion;
+        console.log(this.usuNombre + " - " + this.usuEmail);
+      })
+    });
+
+    this.fireauth.onAuthStateChanged(res => {
+      console.log("AUTH_USER", res);
+    });
+
+  }
 
 
   logout() {

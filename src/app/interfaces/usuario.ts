@@ -3,7 +3,7 @@ export interface Usuario {
   ci_ruc: string;
   direccion: string;
   email: string;
-  foto: string;
+  urlFoto: string;
   ip: string;
   nombre: string;
   seña: string;

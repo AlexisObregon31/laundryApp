@@ -1,3 +1,5 @@
+import { AngularFireAuth } from '@angular/fire/auth';
+import { LoadingController } from '@ionic/angular';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
@@ -23,8 +25,15 @@ export class ImagenPruebaPage implements OnInit {
   private coleccionImagen: AngularFirestoreCollection<imageData>;
   imagefile: Observable<imageData[]>;
   subirImagen: AngularFireUploadTask;
+  percentage: Observable<number>;
+  snapshot: Observable<any>;
+  subirArchivoImagen: Observable<any>;
+  authservice: any;
 
-  constructor(private database: AngularFirestore, private storage: AngularFireStorage) {
+  constructor(private database: AngularFirestore,
+    private storage: AngularFireStorage,
+    private loading: LoadingController,
+    private fireauth: AngularFireAuth) {
     this.isLoading = false;
     this.isLoaded = false;
   }
@@ -33,7 +42,15 @@ export class ImagenPruebaPage implements OnInit {
   }
 
 
-  subirImagenAlFirebase(event) {
+  async subirImagenAlFirebase(event) {
+
+    const load = await this.loading.create({
+      spinner: 'dots',
+    });
+
+    load.present();
+
+
     const file = event.target.files;
     console.log("Archivo:" + file);
     var fileName = file[0];
@@ -48,6 +65,18 @@ export class ImagenPruebaPage implements OnInit {
     var fileRef = this.storage.ref(path);
 
     this.subirImagen = this.storage.upload(path, fileName);
+    this.loading.dismiss();
+    this.percentage = this.subirImagen.percentageChanges();
+
+    this.subirImagen.then(res => {
+      var archivoImagen = res.task.snapshot.ref.getDownloadURL();
+      archivoImagen.then(urlDescargable => {
+        console.log('URL', urlDescargable);
+        this.database.doc(`usuarios/${localStorage.getItem("userUid")}`).update({ // Cambiar este método al de la guía del profe, llevar estas funciones al editar-perfil.page para allí consultar ya el id tambien al momento de iniciar así cuando se quiera modificar ya se pase el id del documento.
+          urlFoto: urlDescargable
+        });
+      })
+    })
   }
 
 }

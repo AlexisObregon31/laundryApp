@@ -1,17 +1,31 @@
 <!DOCTYPE html>
+<ion-header>
+  <ion-toolbar>
+    <ion-thumbnail style=" position: absolute; left:75%; top:0%; width: 80px; height: 75px;">
+      <img src="assets/icon/iconlaundryapp.png">
+    </ion-thumbnail>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
+  <ion-item>
+    <ion-button routerLink="/editar-perfil" routerDirection="forward">Ir a Editar Perfil</ion-button>
+  </ion-item>
   <div class="containerWrap">
     <ion-button expand="full" *ngIf="!isLoading && !isLoaded">
       <ion-icon slot="start" lazy="true" name="imagen"></ion-icon>
       <input type="file" (change)="subirImagenAlFirebase($event)" id="file-input" accept="image/png, image/jpg">
     </ion-button>
 
-    <!--<ion-card *ngIf="isLoading && !isLoaded">
+    <ion-card *ngIf="isLoading && !isLoaded">
       <ion-card-content *ngIf="percentage | async as percent">
         Cargando:{{percent | number}}%
         <ion-progress-bar value="{{percent / 100}}"></ion-progress-bar>
       </ion-card-content>
-    </ion-card>-->
+    </ion-card>
 
   </div>
 </ion-content>

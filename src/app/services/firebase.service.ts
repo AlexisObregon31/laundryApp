@@ -11,9 +11,7 @@ export class FirebaseService {
 
   constructor(public angularFirestore: AngularFirestore) { }
 
-  public insertar(coleccion, datos) {
-    return this.angularFirestore.collection(coleccion).add(datos);
-  }
+
 
   public consultar(coleccion, campo, condicion, valor) {
     if (campo != "") { //Si se recibe un campo para la condicion where
@@ -23,6 +21,14 @@ export class FirebaseService {
     }
   }
 
+  public insertar(coleccion, datos) {
+    return this.angularFirestore.collection(coleccion).add(datos);
+  }
+
+  public actualizar(coleccion, documentId, datos) {
+    return this.angularFirestore.collection(coleccion).doc(documentId).set(datos);
+  }
+  
   formatoFecha(fecha): string {
     const dia = fecha.getDay();
     const mes = fecha.getMonth();
