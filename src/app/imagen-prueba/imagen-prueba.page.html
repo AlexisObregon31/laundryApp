@@ -15,9 +15,10 @@
     <ion-button routerLink="/editar-perfil" routerDirection="forward">Ir a Editar Perfil</ion-button>
   </ion-item>
   <div class="containerWrap">
-    <ion-button expand="full" *ngIf="!isLoading && !isLoaded">
-      <ion-icon slot="start" lazy="true" name="imagen"></ion-icon>
-      <input type="file" (change)="subirImagenAlFirebase($event)" id="file-input" accept="image/png, image/jpg">
+    <ion-button color="none" class="btn-file" *ngIf="!isLoading && !isLoaded">
+      <!--<ion-icon slot="start" lazy="true" name="image"></ion-icon>-->
+      <input class="file" type="file" (change)="subirImagenAlFirebase($event)" id="file-input"
+        accept="image/png, image/jpg">
     </ion-button>
 
     <ion-card *ngIf="isLoading && !isLoaded">
