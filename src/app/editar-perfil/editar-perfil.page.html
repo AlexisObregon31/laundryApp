@@ -13,14 +13,13 @@
 <ion-content [fullscreen] style="margin:auto;">
 
   <div class="container">
-    <div class="overlay">
+    <ion-button color="none" class="btn-perfil" routerLink="/ampliar-imagen" routerDirection="forward">
       <ion-avatar class="avatar-perfil">
         <!--<img src="../../assets/icon/imagePlaceholder.jpg">-->
         <img [src]="usuUrlFoto">
       </ion-avatar>
-    </div>
+    </ion-button>
   </div>
-
   <ion-card>
     <ion-card-header>
       <ion-card-title>

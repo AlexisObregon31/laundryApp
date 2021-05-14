@@ -1,0 +1,65 @@
+ion-header {
+  --ion-background-color: #000000;
+  height: 5em;
+}
+
+.btn-back {
+  text-align: left;
+  position: relative;
+  top: 3.5em;
+  left: 0%;
+  border-radius: 70%;
+}
+
+ion-icon {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+ion-title {
+  color: rgb(218, 214, 210);
+  position: relative;
+  text-align: center;
+  top: 3em;
+}
+
+.contenedorCentral {
+  --ion-background-color: #000000;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.divFoto {
+  position: relative;
+  align-content: center;
+  top: 4em;
+  text-align: center;
+}
+
+.item {
+  position: relative;
+  top: 10em;
+}
+
+.btn-eliminar {
+  width: 9em;
+  height: 3.5em;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  color: #aaaaaa;
+  background-color: #272727;
+  border-radius: 1em;
+}
+
+.btn-editar {
+  width: 9em;
+  height: 3.5em;
+  position: absolute;
+  top: 0%;
+  right: 1em;
+  color: #aaaaaa;
+  background-color: #272727;
+  border-radius: 1em;
+}

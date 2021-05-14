@@ -12,17 +12,13 @@ ion-content {
 
 .btn-file {
   //size: 5em;
-  width: 5em;
-  height: 5em;
+  width: 9em;
+  height: 2em;
   //--background: #444444;
-  background: url('../../assets/img/fondohome.jpg');
-  background-repeat: no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  //background: url('../../assets/img/fondohome.jpg');
   background-position: center center;
-  border-radius: 50%;
+  //border-radius: 50%;
+  background-color: #228192;
 }
 
 .file {
