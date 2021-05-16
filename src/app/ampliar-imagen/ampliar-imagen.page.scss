@@ -63,3 +63,15 @@ ion-title {
   background-color: #272727;
   border-radius: 1em;
 }
+
+.file {
+  color: transparent;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}

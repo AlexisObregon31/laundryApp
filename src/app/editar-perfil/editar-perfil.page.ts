@@ -1,3 +1,5 @@
+import { TransferirDatosService } from './../services/transferir-datos.service';
+import { Router } from '@angular/router';
 import { FirebaseService } from './../services/firebase.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FirestorageService } from './../services/firestorage.service';
@@ -17,18 +19,13 @@ import { Usuario } from '../interfaces/usuario';
 export class EditarPerfilPage implements OnInit, OnDestroy {
 
   usuario: Usuario;
+
   public datosFormulario = new FormData();
   public nombreArchivo = '';
   perfil: any;
-  usuNombre;
-  imagenUrlPerfil;
-  emailPerfil;
+  idUser: any;
 
   consultarDatos;
-  usuEmail: any;
-  usuUrlFoto: any;
-  usuCelular: any;
-  usuDireccion: any;
 
   constructor(
     private fireauth: AngularFireAuth,
@@ -36,8 +33,13 @@ export class EditarPerfilPage implements OnInit, OnDestroy {
     public alertController: AlertController,
     private firestorageService: FirestorageService,
     private database: AngularFirestore,
-    private firebaseService: FirebaseService
-  ) { this.consultarDatosUsuario("usuarios", "uid", "==", localStorage.getItem("userUid")); }
+    private firebaseService: FirebaseService,
+    private router: Router,
+    private transferirDatosService: TransferirDatosService
+  ) {
+    this.consultarDatosUsuario("usuarios", "uid", "==", localStorage.getItem("userUid"));
+    this.usuario = {} as Usuario;
+  }
 
   ngOnInit() {
   }
@@ -62,25 +64,32 @@ export class EditarPerfilPage implements OnInit, OnDestroy {
     });
   }*/
 
-
   consultarDatosUsuario(coleccion, campo, condicion, valor) {
 
     this.firebaseService.consultar(coleccion, campo, condicion, valor).subscribe((resConsultaUser) => {
       this.usuario = {} as Usuario;
       resConsultaUser.forEach((datosUser: any) => {
-        this.usuNombre = datosUser.payload.doc.data().nombre;
-        this.usuEmail = datosUser.payload.doc.data().email;
-        this.usuUrlFoto = datosUser.payload.doc.data().urlFoto;
-        this.usuCelular = datosUser.payload.doc.data().celular;
-        this.usuDireccion = datosUser.payload.doc.data().direccion;
-        console.log(this.usuNombre + " - " + this.usuEmail);
+        this.idUser = datosUser.payload.doc.id;
+        console.log("El ID del usuario es: " + this.idUser);
+        this.usuario.nombre = datosUser.payload.doc.data().nombre;
+        console.log(this.usuario.nombre);
+        this.usuario.email = datosUser.payload.doc.data().email;
+        this.usuario.urlFoto = datosUser.payload.doc.data().urlFoto;
+        this.usuario.celular = datosUser.payload.doc.data().celular;
+        this.usuario.direccion = datosUser.payload.doc.data().direccion;
+        console.log(this.usuario);
       })
-    });
+    })
 
     this.fireauth.onAuthStateChanged(res => {
       console.log("AUTH_USER", res);
     });
 
+  }
+
+  goToAmpliarImagen() {
+    this.transferirDatosService.enviarObjetoStruc(this.usuario);
+    this.router.navigate(['/ampliar-imagen/' + this.idUser]);
   }
 
 

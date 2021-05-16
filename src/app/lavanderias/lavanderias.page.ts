@@ -1,3 +1,4 @@
+import { LoadingController, NavController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,23 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LavanderiasPage implements OnInit {
 
-  constructor() {
-    this.btnUsuario();
+  constructor(private loading: LoadingController,
+    private navCtrl: NavController) {
+    //this.btnUsuario();
   }
 
   ngOnInit() {
   }
   emailUser;
   usuarioLogueado;
-  loginOrPerfil;
 
-  btnUsuario() {
+  async btnUsuario() {
     this.emailUser = localStorage.getItem("emailUser");
     console.log('Esta logueado el usuario? -->  ' + this.emailUser);
+    const load = await this.loading.create({
+      spinner: 'dots',
+    });
+
+    load.present();
     if (this.emailUser != null) {
-      this.loginOrPerfil = '/editar-perfil';
+      this.navCtrl.navigateForward('/editar-perfil');
     } else {
-      this.loginOrPerfil = '/login';
+      this.navCtrl.navigateForward('/login');
     }
-    }
+    this.loading.dismiss();
+  }
 }

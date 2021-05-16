@@ -56,11 +56,14 @@ export class ServiciosPage implements OnInit {
 
   clicBotonInsertar(nom_empresa, control) {
     this.servicio = {} as Servicio;
+
     if (control == "1") {//Si es la primera vez que ingresa
       this.servicio.uid_usu_cliente = this.uidUser;
       this.servicio.nombre_cliente = localStorage.getItem("nombre");
       this.servicio.nombre_empresa = nom_empresa;
+
       this.consultarDatosUsuario("usuarios", "nombre", "==", nom_empresa);
+      
       console.log("Datos:" + this.servicio.uid_usu_cliente+this.servicio.nombre_cliente+this.servicio.nombre_empresa+this.servicio.uid_usu_empresa);
       this.navCtrl.navigateForward('/servicio-objeto');
     } else {
