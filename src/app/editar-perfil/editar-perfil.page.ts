@@ -1,13 +1,13 @@
-import { TransferirDatosService } from './../services/transferir-datos.service';
+import { AmpliarImagenPage } from './../ampliar-imagen/ampliar-imagen.page';
 import { Router } from '@angular/router';
 import { FirebaseService } from './../services/firebase.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FirestorageService } from './../services/firestorage.service';
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AlertController, NavController } from '@ionic/angular';
-import * as firebase from 'firebase/app';
+import { AlertController, NavController, LoadingController } from '@ionic/angular';
 import { Usuario } from '../interfaces/usuario';
+import { TransferirDatosService } from '../services/transferir-datos.service';
 
 
 
@@ -24,7 +24,6 @@ export class EditarPerfilPage implements OnInit, OnDestroy {
   public nombreArchivo = '';
   perfil: any;
   idUser: any;
-
   consultarDatos;
 
   constructor(
@@ -35,8 +34,8 @@ export class EditarPerfilPage implements OnInit, OnDestroy {
     private database: AngularFirestore,
     private firebaseService: FirebaseService,
     private router: Router,
-    private transferirDatosService: TransferirDatosService
-  ) {
+    private loading: LoadingController,
+    private transferirDatosService: TransferirDatosService) {
     this.consultarDatosUsuario("usuarios", "uid", "==", localStorage.getItem("userUid"));
     this.usuario = {} as Usuario;
   }
@@ -47,49 +46,41 @@ export class EditarPerfilPage implements OnInit, OnDestroy {
   ngOnDestroy() {
   }
 
-  /*cargarDatos() {
-    this.fireauth.onAuthStateChanged(res => {
-      console.log("AUTH_USER", res);
-      if (res) {
-        //const result = this.database.doc(`/usuarios/${localStorage.getItem("userUid")}`);
-        //this.consultarDatosUsuario('usuarios', 'uid', '=', localStorage.getItem("userUid"));
-        var userProfile = result.valueChanges();
-        userProfile.subscribe(perfil => {
-          console.log("Perfil:", perfil);
-          this.nombrePerfil = perfil['nombre'];
-          this.imagenUrlPerfil = perfil['urlFoto'];
-          this.emailPerfil = perfil['email'];
-        })
-      }
-    });
-  }*/
 
-  consultarDatosUsuario(coleccion, campo, condicion, valor) {
+  async consultarDatosUsuario(coleccion, campo, condicion, valor) {
+    const load = await this.loading.create({
+      spinner: 'dots',
+    });
 
     this.firebaseService.consultar(coleccion, campo, condicion, valor).subscribe((resConsultaUser) => {
+      load.present();
       this.usuario = {} as Usuario;
       resConsultaUser.forEach((datosUser: any) => {
         this.idUser = datosUser.payload.doc.id;
         console.log("El ID del usuario es: " + this.idUser);
         this.usuario.nombre = datosUser.payload.doc.data().nombre;
-        console.log(this.usuario.nombre);
         this.usuario.email = datosUser.payload.doc.data().email;
         this.usuario.urlFoto = datosUser.payload.doc.data().urlFoto;
         this.usuario.celular = datosUser.payload.doc.data().celular;
         this.usuario.direccion = datosUser.payload.doc.data().direccion;
         console.log(this.usuario);
       })
+      load.dismiss();
     })
 
     this.fireauth.onAuthStateChanged(res => {
-      console.log("AUTH_USER", res);
+      console.log("AUTH_USER", res.uid);
     });
 
   }
 
   goToAmpliarImagen() {
-    this.transferirDatosService.enviarObjetoStruc(this.usuario);
-    this.router.navigate(['/ampliar-imagen/' + this.idUser]);
+    //this.transferirDatosService.enviarObjetoStruc(this.usuario);
+    //this.ampliarImagenPage;
+    //this.ampliarImagenPage.recibirUrlFoto(this.usuario.urlFoto);
+    this.transferirDatosService.setDato(this.usuario.urlFoto);
+    this.router.navigate(['/ampliar-imagen/' + this.idUser + '/' + this.usuario.nombre]);
+
   }
 
 

@@ -3,7 +3,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController, AlertController } from '@ionic/angular';
 import { FirebaseService } from './../services/firebase.service';
 import { Usuario } from '../interfaces/usuario';
-import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 

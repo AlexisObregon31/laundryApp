@@ -1,4 +1,4 @@
-import { TransferirDatosService } from './../services/transferir-datos.service';
+import { ActivatedRoute } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { LoadingController } from '@ionic/angular';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Usuario } from '../interfaces/usuario';
+import { TransferirDatosService } from '../services/transferir-datos.service';
 
 export interface imageData {
   fileName: string;
@@ -31,24 +32,30 @@ export class AmpliarImagenPage implements OnInit {
   snapshot: Observable<any>;
   subirArchivoImagen: Observable<any>;
   authservice: any;
-  usuario: Usuario;
+  urlFoto;
+  nombre;
+  idUser
 
   constructor(private database: AngularFirestore,
     private storage: AngularFireStorage,
     private loading: LoadingController,
     private fireauth: AngularFireAuth,
+    private activedRoute: ActivatedRoute,
     private transferirDatosService: TransferirDatosService) {
     this.isLoading = false;
     this.isLoaded = false;
-    //console.log("Usuario en ampliar.ts: " + this.usuario);
+    this.urlFoto = this.transferirDatosService.getDato();
+    this.idUser = this.activedRoute.snapshot.params.id;
+    //this.urlFoto = this.activedRoute.snapshot.params.urlFoto;
+    this.nombre = this.activedRoute.snapshot.params.nombre;
+    console.log(this.idUser + " - " + this.urlFoto + "-" + this.nombre);
   }
 
   ngOnInit() {
-    //this.usuario = {} as Usuario;
-    this.transferirDatosService.$getObjetoStruc.subscribe(res => {
-      this.usuario = {} as Usuario;
-      this.usuario.nombre = res.nombre;
-    }).unsubscribe();
+  }
+
+  public recibirUrlFoto(urlImagen: string) {
+    this.urlFoto = urlImagen;
   }
 
   async subirImagenAlFirebase(event) {

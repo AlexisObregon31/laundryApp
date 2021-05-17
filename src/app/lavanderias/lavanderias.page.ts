@@ -22,16 +22,17 @@ export class LavanderiasPage implements OnInit {
   async btnUsuario() {
     this.emailUser = localStorage.getItem("emailUser");
     console.log('Esta logueado el usuario? -->  ' + this.emailUser);
+
     const load = await this.loading.create({
       spinner: 'dots',
     });
-
     load.present();
+
     if (this.emailUser != null) {
       this.navCtrl.navigateForward('/editar-perfil');
     } else {
       this.navCtrl.navigateForward('/login');
     }
-    this.loading.dismiss();
+    load.dismiss();
   }
 }
