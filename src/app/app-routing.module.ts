@@ -56,7 +56,7 @@ const routes: Routes = [
     loadChildren: () => import('./imagen-prueba/imagen-prueba.module').then(m => m.ImagenPruebaPageModule)
   },
   {
-    path: 'ampliar-imagen/:id/:nombre',
+    path: 'ampliar-imagen/:id',
     loadChildren: () => import('./ampliar-imagen/ampliar-imagen.module').then(m => m.AmpliarImagenPageModule)
   }
 ];

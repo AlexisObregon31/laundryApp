@@ -58,12 +58,13 @@ export class EditarPerfilPage implements OnInit, OnDestroy {
       resConsultaUser.forEach((datosUser: any) => {
         this.idUser = datosUser.payload.doc.id;
         console.log("El ID del usuario es: " + this.idUser);
-        this.usuario.nombre = datosUser.payload.doc.data().nombre;
+        this.usuario = datosUser.payload.doc.data();
+        /*this.usuario.nombre = datosUser.payload.doc.data().nombre;
         this.usuario.email = datosUser.payload.doc.data().email;
         this.usuario.urlFoto = datosUser.payload.doc.data().urlFoto;
         this.usuario.celular = datosUser.payload.doc.data().celular;
-        this.usuario.direccion = datosUser.payload.doc.data().direccion;
-        console.log(this.usuario);
+        this.usuario.direccion = datosUser.payload.doc.data().direccion;*/
+        console.log("Datos usuario al consultar" + this.usuario);
       })
       load.dismiss();
     })
@@ -78,8 +79,9 @@ export class EditarPerfilPage implements OnInit, OnDestroy {
     //this.transferirDatosService.enviarObjetoStruc(this.usuario);
     //this.ampliarImagenPage;
     //this.ampliarImagenPage.recibirUrlFoto(this.usuario.urlFoto);
-    this.transferirDatosService.setDato(this.usuario.urlFoto);
-    this.router.navigate(['/ampliar-imagen/' + this.idUser + '/' + this.usuario.nombre]);
+    //this.transferirDatosService.setDato(this.usuario.urlFoto);
+    this.transferirDatosService.setUsuario(this.usuario);
+    this.router.navigate(['/ampliar-imagen/' + this.idUser]);
 
   }
 
