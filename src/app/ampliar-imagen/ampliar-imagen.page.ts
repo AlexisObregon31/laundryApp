@@ -8,6 +8,7 @@ import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/fire
 import { Observable } from 'rxjs';
 import { Usuario } from '../interfaces/usuario';
 import { TransferirDatosService } from '../services/transferir-datos.service';
+import { ToastController } from '@ionic/angular';
 
 export interface imageData {
   fileName: string;
@@ -45,18 +46,44 @@ export class AmpliarImagenPage implements OnInit {
     private activedRoute: ActivatedRoute,
     private transferirDatosService: TransferirDatosService,
     private firestoreService: FirebaseService,
-    private router: Router) {
+    private router: Router,
+    private toastCont: ToastController) {
     this.isLoading = false;
     this.isLoaded = false;
-    //this.urlFoto = this.transferirDatosService.getDato();
     this.usuario = this.transferirDatosService.getUsuario();
     this.idUser = this.activedRoute.snapshot.params.id;
-    //this.urlFoto = this.activedRoute.snapshot.params.urlFoto;
-    //this.nombre = this.activedRoute.snapshot.params.nombre;
     console.log(this.idUser + " - " + this.usuario.urlFoto + "-" + this.usuario.nombre);
   }
 
   ngOnInit() {
+  }
+
+  async crearToast(mensage: string) {
+    const toast = await this.toastCont.create({
+      //header: mensage,
+      color: 'dark',
+      duration: 2000,
+      //message: 'Click to Close',
+      //position: 'middle',
+      buttons: [
+        {
+          side: 'start',
+          icon: 'checkmark-outline',
+          text: ' ' + mensage,
+          handler: () => {
+            console.log('Favorite clicked');
+          }
+        }/*, {
+          text: 'OK',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }*/
+      ]
+    });
+    await toast.present();
+    await toast.onDidDismiss();
   }
 
   async subirImagenAlFirebase(event) {
@@ -93,12 +120,14 @@ export class AmpliarImagenPage implements OnInit {
         });
       })
     })
+    this.crearToast('  Imagen editada');
     this.router.navigate(['/editar-perfil']);
   }
 
   eliminarFoto() {
     this.usuario.urlFoto = "https://firebasestorage.googleapis.com/v0/b/app-laundry-48877.appspot.com/o/usuariosPerfil%2F1621222198208_imagePlaceholder.jpg?alt=media&token=c0f98f4f-58f5-4a45-8920-1748f3447a70";
     //this.transferirDatosService.setUsuario(this.usuario);
+    this.crearToast('  Imagen Eliminada');
     this.router.navigate(['/editar-perfil']);
     this.firestoreService.actualizar("usuarios", this.idUser, this.usuario).then(() => {
       // Actualizar la lista completa
