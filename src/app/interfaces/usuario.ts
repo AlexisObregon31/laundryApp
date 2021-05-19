@@ -6,7 +6,7 @@ export interface Usuario {
   urlFoto: string;
   ip: string;
   nombre: string;
-  seña: string;
+  clave: string;
   tipo: string;
   uid: string;
 }

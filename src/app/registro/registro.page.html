@@ -12,35 +12,41 @@
 
 <ion-content>
   <ion-item>
-    <ion-label>Nombre</ion-label>
-    <ion-input></ion-input>
+    <ion-label position="stacked">Nombre</ion-label>
+    <ion-input autofocus="true" [(ngModel)]="usuario.nombre"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label>Email</ion-label>
-    <ion-input [(ngModel)]="email"></ion-input>
+    <ion-label position="stacked">Dirección</ion-label>
+    <ion-input [(ngModel)]="usuario.direccion"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label>Contraseña</ion-label>
-    <ion-input type="password" [(ngModel)]="password"></ion-input>
+    <ion-label position="stacked">CI/RUC</ion-label>
+    <ion-input [(ngModel)]="usuario.ci_ruc"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label>Confirmar seña</ion-label>
-    <ion-input type="password"></ion-input>
+    <ion-label position="stacked">Email</ion-label>
+    <ion-input [(ngModel)]="usuario.email"></ion-input>
   </ion-item>
 
-  <ion-button style="background-color: rgb(21, 116, 206); justify-content: center; display: flex; border-radius: 6%;"
-    (click)="signup()" type="reset">Registrar
-  </ion-button>
+  <ion-item>
+    <ion-label position="stacked">Contraseña</ion-label>
+    <ion-input type="password" [(ngModel)]="usuario.clave"></ion-input>
+  </ion-item>
 
-  <div>
-    <ion-label style=" color:rgb(21, 116, 206); position: absolute; top:50%; right: 21%;">¿Ya tienes un usuario?
-    </ion-label>
-  </div>
+  <ion-item lines="inset">
+    <ion-label position="stacked">Confirmar seña</ion-label>
+    <ion-input type="password" [(ngModel)]="controlClave"></ion-input>
+  </ion-item>
+  <ion-item lines="none">
+    <button class="botones" id="btn-registrar" color="none" (click)="signup()" type="reset">Registrar
+    </button>
+  </ion-item>
 
-  <ion-button color="none" routerLink="/login" routerDirection="forward" class="acceder">Acceder
-  </ion-button>
+  <ion-item lines="none">
+    <a class="lbl-mensaje" href="/login">¿Ya tienes un usuario?</a>
+  </ion-item>
 
 </ion-content>

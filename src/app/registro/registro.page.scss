@@ -9,31 +9,11 @@ ion-title {
 }
 
 
-.label_registro {
-  position: absolute;
-  left: 35%;
-}
-
-.input_registro {
-  position: absolute;
+#btn-registrar {
+  background-position: center center;
   text-align: center;
-  right: 6%;
-}
-
-
-.acceder {
-  font-family: Helvetica, sans-serif;
-  color: #fff !important;
-  font-size: 18px;
-  font-weight: 400;
-  background: #0749ac;
-  border: 2px solid;
-  border-color: #0749ac;
   position: absolute;
-  top: 58%;
-  left: 23%;
-  border-radius: 6%;
-  letter-spacing: 0.05em;
+  left: 5em;
 }
 
 .acceder:before {
@@ -50,3 +30,12 @@ ion-title {
 .acceder:hover:before {
   width: 100%;
 }
+
+.lbl-mensaje {
+  position: absolute;
+  background-position: center center;
+  position: center;
+  text-align: center;
+  left: 2.5em;
+}
+

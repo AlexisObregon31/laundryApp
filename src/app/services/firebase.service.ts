@@ -28,7 +28,11 @@ export class FirebaseService {
   public actualizar(coleccion, documentId, datos) {
     return this.angularFirestore.collection(coleccion).doc(documentId).set(datos);
   }
-  
+
+  public eliminar(coleccion, documentId) {
+    return this.angularFirestore.collection(coleccion).doc(documentId).delete();
+  }
+
   formatoFecha(fecha): string {
     const dia = fecha.getDay();
     const mes = fecha.getMonth();
