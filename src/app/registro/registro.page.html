@@ -13,32 +13,32 @@
 <ion-content>
   <ion-item>
     <ion-label position="stacked">Nombre</ion-label>
-    <ion-input autofocus="true" [(ngModel)]="usuario.nombre"></ion-input>
+    <ion-input #inpNombre [(ngModel)]="usuario.nombre" required="true"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="stacked">Dirección</ion-label>
-    <ion-input [(ngModel)]="usuario.direccion"></ion-input>
+    <ion-input [(ngModel)]="usuario.direccion" required="true"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="stacked">CI/RUC</ion-label>
-    <ion-input [(ngModel)]="usuario.ci_ruc"></ion-input>
+    <ion-input [(ngModel)]="usuario.ci_ruc" required="true"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="stacked">Email</ion-label>
-    <ion-input [(ngModel)]="usuario.email"></ion-input>
+    <ion-input [(ngModel)]="usuario.email" required="true"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="stacked">Contraseña</ion-label>
-    <ion-input type="password" [(ngModel)]="usuario.clave"></ion-input>
+    <ion-input #inpControlSeña type="password" [(ngModel)]="usuario.clave" required="true"></ion-input>
   </ion-item>
 
   <ion-item lines="inset">
     <ion-label position="stacked">Confirmar seña</ion-label>
-    <ion-input type="password" [(ngModel)]="controlClave"></ion-input>
+    <ion-input type="password" [(ngModel)]="controlClave" required="true"></ion-input>
   </ion-item>
   <ion-item lines="none">
     <button class="botones" id="btn-registrar" color="none" (click)="signup()" type="reset">Registrar

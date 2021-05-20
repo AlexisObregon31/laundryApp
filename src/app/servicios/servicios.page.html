@@ -10,26 +10,26 @@
   </ion-toolbar>
 </ion-header>
 
-    <ion-content [fullscreen]="true">
-      <ion-list>
-        <ion-item button (click)="clicBotonInsertar(
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item button (click)="clicBotonInsertar(
           listServices.data.nombre_empresa,1)" *ngFor="let listServices of arrayServicios">
-          <ion-grid>
-            <ion-row>
-              <ion-label>{{ listServices.data.fecha_hora }}</ion-label>
-              <ion-label class="cli_empresa">
-                {{ listServices.data.nombre_empresa }}
-              </ion-label>
-            </ion-row>
-          </ion-grid>
-        </ion-item>
-      </ion-list>
-      <ion-item style="position: absolute; right:21%; top:88%;">
-        <ion-label color="primary">Solicitar un Servicio</ion-label>
-      </ion-item>
-      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button>
-          <ion-icon name="add"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
-    </ion-content>
+      <ion-grid>
+        <ion-row>
+          <ion-label>{{ listServices.data.fecha_hora }}</ion-label>
+          <ion-label class="cli_empresa">
+            {{ listServices.data.nombre_empresa }}
+          </ion-label>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+  <ion-item style="position: absolute; right:21%; top:88%;">
+    <ion-label color="primary">Solicitar un Servicio</ion-label>
+  </ion-item>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

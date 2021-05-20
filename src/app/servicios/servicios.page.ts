@@ -1,8 +1,9 @@
+import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController } from '@ionic/angular';
 import { LoginPage } from './../login/login.page';
-import { FirebaseService } from './../services/firebase.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Servicio } from '../interfaces/servicio';
+import { FirebaseService } from '../services/firebase.service';
 
 
 
@@ -13,7 +14,7 @@ import { Servicio } from '../interfaces/servicio';
   templateUrl: './servicios.page.html',
   styleUrls: ['./servicios.page.scss'],
 })
-export class ServiciosPage implements OnInit {
+export class ServiciosPage implements OnInit, OnDestroy {
 
   arrayServicios: any = [{
     id: "",
@@ -24,10 +25,18 @@ export class ServiciosPage implements OnInit {
   tipoUser: string;
   campoUser: string;
   user;
+  usuarioValidado: any;
 
-  constructor(private firebaseService: FirebaseService, private navCtrl: NavController,) {
+  constructor(private firebaseService: FirebaseService, private navCtrl: NavController, private fireAuth: AngularFireAuth) {
     this.uidUser = localStorage.getItem('userUid');
     this.tipoUser = localStorage.getItem('tipoUsuario');
+    this.fireAuth.onAuthStateChanged(user => {
+      if (user.emailVerified == true) {
+        this.usuarioValidado = true;
+        console.log('Email verificado !' + this.usuarioValidado);
+      }
+    });
+    //console.log("Result" + this.usuarioValidado)
     this.saberTipoUsuario();
     this.obtenerListaServicios();
     //this.formatearFecha();
@@ -35,6 +44,9 @@ export class ServiciosPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
   }
 
   obtenerListaServicios() {
@@ -55,7 +67,7 @@ export class ServiciosPage implements OnInit {
   login: LoginPage;
 
   clicBotonInsertar(nom_empresa, control) {
-    this.servicio = {} as Servicio;
+    //this.servicio = {} as Servicio;
 
     if (control == "1") {//Si es la primera vez que ingresa
       this.servicio.uid_usu_cliente = this.uidUser;
@@ -63,8 +75,8 @@ export class ServiciosPage implements OnInit {
       this.servicio.nombre_empresa = nom_empresa;
 
       this.consultarDatosUsuario("usuarios", "nombre", "==", nom_empresa);
-      
-      console.log("Datos:" + this.servicio.uid_usu_cliente+this.servicio.nombre_cliente+this.servicio.nombre_empresa+this.servicio.uid_usu_empresa);
+
+      console.log("Datos:" + this.servicio.uid_usu_cliente + this.servicio.nombre_cliente + this.servicio.nombre_empresa + this.servicio.uid_usu_empresa);
       this.navCtrl.navigateForward('/servicio-objeto');
     } else {
       this.firebaseService.insertar("servicios", this.servicio).then(() => {
@@ -78,10 +90,10 @@ export class ServiciosPage implements OnInit {
 
   saberTipoUsuario() {
     if (this.tipoUser == "cliente") {
-      this.campoUser = "uid_usu_cliente"
+      this.campoUser = "uid_usu_cliente"//Asigna campo cliente para la consulta a la BD
     } else {
       if (this.tipoUser == "empresa") {
-        this.campoUser = "uid_usu_empresa"
+        this.campoUser = "uid_usu_empresa"//Asigna campo empresa para la consulta a la BD
       } else {
         this.campoUser = "";
       }
@@ -100,11 +112,11 @@ export class ServiciosPage implements OnInit {
   //usuario: Usuario;
   consultarDatosUsuario(coleccion, campo, condicion, valor) {
     this.firebaseService.consultar(coleccion, campo, condicion, valor).subscribe((resConsulta) => {
-      this.servicio = {} as Servicio;
+      //this.servicio = {} as Servicio;
       resConsulta.forEach((datos: any) => {
         this.servicio.uid_usu_empresa = datos.payload.doc.data().uid;
       })
-    });
+    }).unsubscribe();
   }
 
 
