@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { Platform, NavController, LoadingController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
-//import { Observable } from 'rxjs/Observable';
-//import { of } from 'rxjs/observable/of';
+
 
 @Component({
   selector: 'app-root',
@@ -26,31 +25,38 @@ export class AppComponent {
   ];
 
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  public dirigirPage: boolean;
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
-    private fireAuth: AngularFireAuth) {
-    //this.initializeApp();
+    private fireAuth: AngularFireAuth,
+    private navCtrl: NavController,
+    private loading: LoadingController) {
+    this.fireAuth.onAuthStateChanged(user => {
+      if (user.emailVerified == true) {
+        this.dirigirPage = true;
+        console.log('Email verificado en el app.ts' + this.dirigirPage);
+      } else this.dirigirPage = false;
+    });
   }
 
-
-  /*initializeApp() {
-    this.platform.ready().then(() => {
-      this.fireAuth.onAuthStateChanged(user => {
-        if (user) {
-          this.router.navigate(['/home']);
-          this.splashScreen.hide();
-        }
-        else {
-          this.router.navigate(['/home']);
-          this.splashScreen.hide();
-        }
-      });
-      this.statusBar.styleDefault();
+  async validarUsuario() {
+    const load = await this.loading.create({
+      spinner: 'dots',
     });
-  }*/
+    load.present();
 
+    if (this.dirigirPage == true) {
+      this.navCtrl.navigateForward('/servicios');
+      console.log("Redirigiendo a Servicios, Resp: " + this.dirigirPage);
+    } else {
+      this.navCtrl.navigateForward('/validar-usuario');
+      console.log("REdirigiendo a Validar Usuario, Resp: " + this.dirigirPage);
+    }
+    load.dismiss();
+  }
 }
+

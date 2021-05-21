@@ -28,12 +28,13 @@ export class LoginPage implements OnInit {
   ngOnInit() { }
 
   headerAlert;
+  subHeader;
 
   async avisoLogin() {
     const alert = await this.alertController.create({
       cssClass: 'alert-login',
       header: this.headerAlert,
-      subHeader: this.email,
+      subHeader: this.subHeader,
       //message: 'Registro de Usuario exitoso !',
       buttons: ['OK']
     });
@@ -44,23 +45,28 @@ export class LoginPage implements OnInit {
   login() {
     console.log("Logueando usuario...");
     this.fireauth.signInWithEmailAndPassword(this.email, this.password).then(res => {
-      if (res.user && res.user.emailVerified) {
+      if (res.user) {
         localStorage.setItem("userUid", res.user.uid);
         localStorage.setItem("tipoUsuario", "cliente");
         localStorage.setItem("emailUser", this.email);
         console.log("Logueado exitosamente: " + this.email);
         this.consultarDatosUsuario("usuarios", "uid", "==", localStorage.getItem("userUid"));
         this.headerAlert = "Bienvenido !"
+        this.subHeader = this.email;
         this.avisoLogin();
-        this.navCtrl.navigateForward('/lavanderias');
+        if (res.user.emailVerified)
+          this.navCtrl.navigateForward('/lavanderias');
+        else
+          this.navCtrl.navigateForward('/validar-usuario');
       } else {
-        this.email = "Favor registrarse o verifique el email remitido a su correo !";
-        this.headerAlert = "Error... el correo no existe o aun no se ha validado";
+        this.headerAlert = "Error al ingresar!";
+        this.subHeader = "Favor registrarse e intente nuevamente...";
         this.avisoLogin();
       }
     })
       .catch(err => {
-        this.headerAlert = "Ups! se produjo un error, favor intente de nuevo en unos minutos"
+        this.headerAlert = "Correo o seña inválida"
+        this.subHeader = "Los datos son incorrectos o no existe la cuenta"
         this.avisoLogin();
         console.log(`login failed ${err}`);
         //this.error = err.message;

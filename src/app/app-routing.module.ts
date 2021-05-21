@@ -58,6 +58,10 @@ const routes: Routes = [
   {
     path: 'ampliar-imagen/:id',
     loadChildren: () => import('./ampliar-imagen/ampliar-imagen.module').then(m => m.AmpliarImagenPageModule)
+  },
+  {
+    path: 'validar-usuario',
+    loadChildren: () => import('./validar-usuario/validar-usuario.module').then( m => m.ValidarUsuarioPageModule)
   }
 ];
 

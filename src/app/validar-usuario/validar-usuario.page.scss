@@ -1,0 +1,52 @@
+#btnReenviar {
+  position: relative;
+  background-position: center center;
+  text-align: center;
+  top: 8em;
+  //left: 1em;
+}
+
+.texto {
+  position: relative;
+  background-position: center center;
+  text-align: center;
+  top: 4em;
+  color: rgb(36, 36, 36);
+  size: 4em;
+}
+
+.divTexto {
+  position: relative;
+  background-position: center center;
+  text-align: center;
+  padding: 1em;
+}
+
+.alert {
+  position: absolute;
+  top: 30%;
+  left: 20%;
+  padding: 1em;
+  border-radius: 5em;
+  color: darkblue;
+}
+
+.divImg {
+  top: 2em;
+  background-position: center center;
+  position: relative;
+  text-align: center;
+}
+
+.infoImg {
+  background-position: center center;
+  position: relative;
+  width: auto;
+  height: 6em;
+  text-align: center;
+}
+
+.lbl-mensaje {
+  position: relative;
+  top: 1em;
+}

@@ -33,7 +33,7 @@ export class ServiciosPage implements OnInit, OnDestroy {
     this.fireAuth.onAuthStateChanged(user => {
       if (user.emailVerified == true) {
         this.usuarioValidado = true;
-        console.log('Email verificado !' + this.usuarioValidado);
+        console.log('Email verificado en servicios!' + this.usuarioValidado);
       }
     });
     //console.log("Result" + this.usuarioValidado)
@@ -100,16 +100,6 @@ export class ServiciosPage implements OnInit, OnDestroy {
     }
   }
 
-  /*fecha;
-  formatearFecha() {
-    this.arrayServicios.forEach(item => {
-      this.fecha = item.fecha_hora;
-      console.log(item.fecha_hora);
-      //item.data.fecha_hora = this.firebaseService.formatoFecha(this.fecha);
-    });
-  }*/
-
-  //usuario: Usuario;
   consultarDatosUsuario(coleccion, campo, condicion, valor) {
     this.firebaseService.consultar(coleccion, campo, condicion, valor).subscribe((resConsulta) => {
       //this.servicio = {} as Servicio;

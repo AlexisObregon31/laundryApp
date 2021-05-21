@@ -142,6 +142,7 @@ export class RegistroPage implements OnInit, OnDestroy {
 
   insertarUsuario() {
     this.usuario.ip = this.ipAdress;
+    this.usuario.urlFoto = "../../assets/icon/imagePlaceholder.jpg";
     this.firebaseService.insertar("tareas", this.usuario).then(() => {
       console.log('Usuario insertado en la BD correctamente!');
       //this.usuario = {} as Usuario;
