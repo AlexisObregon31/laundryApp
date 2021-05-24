@@ -5,7 +5,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { FirestorageService } from './../services/firestorage.service';
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AlertController, NavController, LoadingController } from '@ionic/angular';
+import { AlertController, NavController, LoadingController, IonButton, IonInput, ToastController } from '@ionic/angular';
 import { Usuario } from '../interfaces/usuario';
 import { TransferirDatosService } from '../services/transferir-datos.service';
 
@@ -18,13 +18,18 @@ import { TransferirDatosService } from '../services/transferir-datos.service';
 })
 export class EditarPerfilPage implements OnInit, OnDestroy {
 
-  usuario: Usuario;
+  @ViewChild('inpNombre') inpNombreRef: IonInput;
 
+
+  usuario: Usuario;
   public datosFormulario = new FormData();
   public nombreArchivo = '';
   perfil: any;
   idUser: any;
   consultarDatos;
+  readOnly: boolean = true;
+  txtBtn: string = "Editar";
+  swBtn = "e";
 
   constructor(
     private fireauth: AngularFireAuth,
@@ -35,7 +40,8 @@ export class EditarPerfilPage implements OnInit, OnDestroy {
     private firebaseService: FirebaseService,
     private router: Router,
     private loading: LoadingController,
-    private transferirDatosService: TransferirDatosService) {
+    private transferirDatosService: TransferirDatosService,
+    private toastCont: ToastController) {
     this.consultarDatosUsuario("usuarios", "uid", "==", localStorage.getItem("userUid"));
     this.usuario = {} as Usuario;
   }
@@ -44,6 +50,48 @@ export class EditarPerfilPage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+  }
+
+  async crearToast(message: string) {
+    const toast = await this.toastCont.create({
+      //header: mensage,
+      message,
+      color: 'dark',
+      duration: 3000,
+      //message: 'Click to Close',
+      //position: posicion,
+      buttons: [
+        {
+          side: 'start',
+          icon: 'checkbox-sharp'
+        }/*, {
+          text: 'OK',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }*/
+      ]
+    });
+    await toast.present();
+    await toast.onDidDismiss();
+  }
+
+  editarDatos() {
+    if (this.swBtn == "e") {
+      this.readOnly = false;
+      this.inpNombreRef.setFocus();
+      this.swBtn = "g";
+      this.txtBtn = "Guardar"
+
+    } else {//guardar
+      console.log("Nombre ahora: " + this.usuario.nombre);
+      this.readOnly = true;
+      this.database.doc(`usuarios/${this.idUser}`).update(this.usuario);
+      this.crearToast("Se han modificado los datos");
+      this.swBtn = "e";
+      this.txtBtn = "Editar"
+    }
   }
 
 

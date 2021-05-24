@@ -44,29 +44,42 @@ export class RecupSenaPage implements OnInit {
     });
     await loading.present();
   }
+  
   async closeLoading() {
     return await this.loadingController.dismiss();
   }
 
   recover() {
-    this.fireauth.sendPasswordResetEmail(this.email)
-      .then(data => {
-        console.log(data);
-        this.presentToast('Password reset email sent', 'bottom', 1000); // this is toastController
-        this.avisoEnvioCorreo();
-        this.router.navigateByUrl('/login');
-      })
-      .catch(err => {
-        console.log(` failed ${err}`);
-        this.error = err.message;
-      });
+    if (this.email) {
+      console.log(this.email);
+      this.fireauth.sendPasswordResetEmail(this.email)
+        .then(data => {
+          console.log(data);
+          //this.crearToast('Password reset email sent', 'bottom', 1000); // this is toastController
+          this.avisoEnvioCorreo();
+          this.router.navigateByUrl('/login');
+        })
+
+        .catch(err => {
+          this.crearToast('Inserte un email válido !', 'bottom', 3000);
+          console.log(` failed ${err}`);
+          this.error = err.message;
+        });
+    } else {
+      this.crearToast('Inserte un email válido !', 'bottom', 3000);
+    }
   }
 
-  async presentToast(message, position, duration) {
+  async crearToast(message, position, duration) {
     const toast = await this.toastController.create({
       message,
       duration,
-      position
+      position,
+      buttons: [
+        {
+          side: 'start',
+          icon: 'close-outline'
+        }]
     });
     toast.present();
   }

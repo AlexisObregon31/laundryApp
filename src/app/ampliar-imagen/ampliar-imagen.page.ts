@@ -115,7 +115,7 @@ export class AmpliarImagenPage implements OnInit {
       var archivoImagen = res.task.snapshot.ref.getDownloadURL();
       archivoImagen.then(urlDescargable => {
         console.log('URL', urlDescargable);
-        this.database.doc(`usuarios/${this.idUser}`).update({ // Cambiar este método al de la guía del profe, llevar estas funciones al editar-perfil.page para allí consultar ya el id tambien al momento de iniciar así cuando se quiera modificar ya se pase el id del documento.
+        this.database.doc(`usuarios/${this.idUser}`).update({
           urlFoto: urlDescargable
         });
       })

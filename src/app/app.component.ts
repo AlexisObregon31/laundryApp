@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -35,27 +36,37 @@ export class AppComponent {
     private fireAuth: AngularFireAuth,
     private navCtrl: NavController,
     private loading: LoadingController) {
-    this.fireAuth.onAuthStateChanged(user => {
-      if (user.emailVerified == true) {
-        this.dirigirPage = true;
-        console.log('Email verificado en el app.ts' + this.dirigirPage);
-      } else this.dirigirPage = false;
-    });
   }
 
   async validarUsuario() {
+
     const load = await this.loading.create({
       spinner: 'dots',
     });
     load.present();
 
-    if (this.dirigirPage == true) {
-      this.navCtrl.navigateForward('/servicios');
-      console.log("Redirigiendo a Servicios, Resp: " + this.dirigirPage);
+    this.fireAuth.onAuthStateChanged(user => {
+      console.log("Result user" + user);
+      if (user == null) {
+        //alert
+        this.navCtrl.navigateForward('/registro');
+      } else {
+        if (user.emailVerified == true) {
+          this.navCtrl.navigateForward('/servicios');
+          console.log("Redirigiendo a Servicios, Resp: " + user.emailVerified);
+          //this.dirigirPage = true;
+          //console.log('Email verificado en el app.ts' + this.dirigirPage);
+        } else this.navCtrl.navigateForward('/validar-usuario');
+      }
+    });
+
+    /*if (this.dirigirPage == true) {
+      //this.navCtrl.navigateForward('/servicios');
+      //console.log("Redirigiendo a Servicios, Resp: " + this.dirigirPage);
     } else {
-      this.navCtrl.navigateForward('/validar-usuario');
-      console.log("REdirigiendo a Validar Usuario, Resp: " + this.dirigirPage);
-    }
+      //this.navCtrl.navigateForward('/validar-usuario');
+      //console.log("REdirigiendo a Validar Usuario, Resp: " + this.dirigirPage);
+    }*/
     load.dismiss();
   }
 }

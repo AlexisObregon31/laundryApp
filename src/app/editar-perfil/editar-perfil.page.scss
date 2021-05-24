@@ -7,11 +7,31 @@ ion-header {
 }
 
 ion-title {
+  top: 29%;
+  position: absolute;
   color: #c7c2c2;
+  left: 2em;
 }
 
 ion-menu-button {
   color: #c7c2c2;
+}
+
+.btn-editar {
+  background-color: #063852;
+  color: #c7c2c2;
+  position: absolute;
+  left: 47%;
+  top: 0.7em;
+  padding: 2%;
+  //margin: 0%;
+  outline: none;
+  font-size: larger;
+  border-radius: 3%;
+}
+
+.btn-editar:active {
+  background-color: #052c41;
 }
 
 .container {
@@ -54,6 +74,22 @@ card-subtitulo {
   left: 3em;
 }
 
+.card-content {
+  padding: 0%;
+}
+
+.icons {
+  position: absolute;
+  left: 0%;
+}
+
+.inpEmail {
+  text-align: center;
+  background-position: center center;
+  left: 2em;
+
+}
+
 ion-item {
   --ion-item-background: #eeeeee;
   text-align: center;
@@ -63,15 +99,15 @@ ion-item {
   font-weight: 300;
   font-size: 14px;
   border-radius: 5px;
-  height: 3em;
-  --min-height: 3em;
+  height: 2.6em;
+  --min-height: 2.6em;
   margin-bottom: 1em;
 }
 
 ion-label {
   text-align: center;
-  padding: 0%;
-  margin: 0%;
+  //padding: 0%;
+  //margin: 0%;
 }
 
 .btn-perfil {

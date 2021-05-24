@@ -12,32 +12,39 @@
 
 <ion-content>
   <ion-item>
-    <ion-label position="stacked">Nombre</ion-label>
-    <ion-input #inpNombre [(ngModel)]="usuario.nombre" required="true"></ion-input>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input #inpNombre [(ngModel)]="usuario.nombre" required="true" placeholder="Ingrese su nombre y apellido">
+    </ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label position="stacked">Dirección</ion-label>
-    <ion-input [(ngModel)]="usuario.direccion" required="true"></ion-input>
+    <ion-label position="floating">Dirección</ion-label>
+    <ion-input [(ngModel)]="usuario.direccion" required="true" placeholder="Ciudad, Barrio"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label position="stacked">CI/RUC</ion-label>
+    <ion-label position="floating">CI/RUC</ion-label>
     <ion-input [(ngModel)]="usuario.ci_ruc" required="true"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label position="stacked">Email</ion-label>
-    <ion-input [(ngModel)]="usuario.email" required="true"></ion-input>
+    <ion-label position="floating">Nº Celular</ion-label>
+    <ion-input [(ngModel)]="usuario.celular" required="true" placeholder="09xx xxx xxx"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label position="stacked">Contraseña</ion-label>
-    <ion-input #inpControlSeña type="password" [(ngModel)]="usuario.clave" required="true"></ion-input>
+    <ion-label position="floating">Email</ion-label>
+    <ion-input [(ngModel)]="usuario.email" required="true" placeholder="ejemplo@gmail.com"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Contraseña</ion-label>
+    <ion-input #inpControlSeña type="password" [(ngModel)]="usuario.clave" required="true"
+      placeholder="Mayor a 6 caracteres"></ion-input>
   </ion-item>
 
   <ion-item lines="inset">
-    <ion-label position="stacked">Confirmar seña</ion-label>
+    <ion-label position="floating">Confirmar seña</ion-label>
     <ion-input type="password" [(ngModel)]="controlClave" required="true"></ion-input>
   </ion-item>
   <ion-item lines="none">

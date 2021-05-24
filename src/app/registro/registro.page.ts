@@ -23,7 +23,7 @@ export class RegistroPage implements OnInit, OnDestroy {
   suscripcion;
   idUser: string;
   controlClave: string;
-  load;
+  load: any;
 
   constructor(
     private fireauth: AngularFireAuth,
@@ -34,11 +34,12 @@ export class RegistroPage implements OnInit, OnDestroy {
     private firebaseService: FirebaseService,
     private toastCont: ToastController) {
     this.usuario = {} as Usuario; // Asignar valores del modelo a this.usuario, es decir, limpia
-    this.crearLoad();
+    //this.crearLoad();
   }
 
   ngOnInit() {
     this.suscripcion = this.utilservice.getIpAdress().subscribe(text => {
+      this.inpNombreRef.setFocus();
       console.log("Obteniendo IP Adress");
       localStorage.setItem("ip", text);
       this.ipAdress = text;
@@ -49,8 +50,6 @@ export class RegistroPage implements OnInit, OnDestroy {
 
 
   ngAfterViewInit() {
-    this.inpNombreRef.setFocus().then(res => console.log(res));
-    //console.log(this.inpNombreRef);
   }
 
   async crearLoad() {
@@ -58,7 +57,11 @@ export class RegistroPage implements OnInit, OnDestroy {
       spinner: 'dots'
     });
     (await load).present();
-    (await load).dismiss(2000);
+    //(await this.load).dismiss(2000);
+  }
+
+  async cerrarLoad() {
+    return await this.loading.dismiss();
   }
 
   usuario: Usuario;
@@ -78,21 +81,18 @@ export class RegistroPage implements OnInit, OnDestroy {
     await alert.present();
   }
 
-  async crearToast(mensage: string) {
+  async crearToast(message: string) {
     const toast = await this.toastCont.create({
       //header: mensage,
+      message,
       color: 'dark',
-      duration: 2000,
+      duration: 3000,
       //message: 'Click to Close',
       //position: posicion,
       buttons: [
         {
           side: 'start',
-          icon: 'close-outline',
-          text: ' ' + mensage,
-          handler: () => {
-            console.log('Favorite clicked');
-          }
+          icon: 'close-outline'
         }/*, {
           text: 'OK',
           role: 'cancel',
@@ -109,45 +109,59 @@ export class RegistroPage implements OnInit, OnDestroy {
 
 
   signup() {
+    //this.crearLoad();
     //Valida contraseñas iguales
     if (this.usuario.nombre || this.usuario.ci_ruc || this.usuario.direccion || this.usuario.email || this.usuario.clave) {
       if (this.usuario.clave == this.controlClave) {
-        this.crearLoad();
         //this.usuario = {} as Usuario;
         this.fireauth.createUserWithEmailAndPassword(this.usuario.email, this.usuario.clave).then(res => {
           if (res.user) {
             this.usuario.uid = res.user.uid;
+            this.usuario.tipo = "cliente";
             console.log("Registro con éxito el User = " + res.user.uid);
             localStorage.setItem("userUid", res.user.uid);
             localStorage.setItem("tipoUsuario", "cliente");
-            this.avisoRegistro("Bienvenido " + this.usuario.nombre);
-            //Insersión del usuario en el firestore
             this.insertarUsuario();
-            //Envío de correo para validar cuenta
             this.fireauth.currentUser.then(user => user.sendEmailVerification());
-            this.navCtrl.navigateForward('/lavanderias');
+            this.cerrarLoad();
+            this.avisoRegistro("Registro exitoso");
+            //Insersión del usuario en el fires
+            //Envío de correo para validar cuenta
+            this.navCtrl.navigateForward('/login');
           }
         })
-          .catch(err => {
-            console.log(`login failed ${err}`);
-            //this.error = err.message;
+          .catch(error => {
+            console.log(`Error al intentar Registrar ${error}`);
+            console.log(error.code);
+            //this.errorMensaje = error.message;
+            if (error.code == "auth/invalid-email")
+              this.crearToast("Ingrese un email valido !");
+            else {
+              if (error.code == "auth/weak-password")
+                this.crearToast("La seña debe ser mayor a 6 caracteres !");
+              else {
+                if (error.code == "auth/email-already-in-use")
+                  this.crearToast("Este correo ya está registrado !");
+              }
+            }
           });
       } else {
+        //this.cerrarLoad();
         this.inpControlSeñaRef.setFocus();
-        this.crearToast("Las contraseñas no coinciden !");
+        this.crearToast("Las señas no coinciden!");
       }
+      //this.cerrarLoad();
     } else this.crearToast("Debe completar todos los campos !");
-
   }
-
+  errorMensaje: string;
   insertarUsuario() {
     this.usuario.ip = this.ipAdress;
     this.usuario.urlFoto = "../../assets/icon/imagePlaceholder.jpg";
-    this.firebaseService.insertar("tareas", this.usuario).then(() => {
+    this.firebaseService.insertar("usuarios", this.usuario).then(() => {
       console.log('Usuario insertado en la BD correctamente!');
       //this.usuario = {} as Usuario;
     }, (error) => {
-      console.error(error);
+      console.log(error);
     });
     this.usuario = {} as Usuario;// Se vuelve a limpiar this.usuario
   }

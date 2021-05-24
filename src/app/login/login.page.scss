@@ -9,3 +9,53 @@ ion-title {
   text-align: center;
   background-position: center center;
 }
+
+.div {
+  position: relative;
+  background-position: center center;
+  text-align: center;
+}
+
+.lbl-recup-sena {
+  background-position: center center;
+  position: relative;
+  top: 6em;
+  text-align: center;
+}
+
+#btn-acceder {
+  position: absolute;
+  text-align: center;
+  background-position: center center;
+  top: 2em;
+  border-radius: 10px;
+
+}
+
+#btn-registro {
+  position: relative;
+  text-align: center;
+  background-position: center center;
+  top: 10em;
+  font-size: 16px;
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  text-align: center;
+  box-shadow: inset 0px 0px 15px 3px #009688;
+  background: linear-gradient(to bottom, #009688 5%, #004b69 100%);
+  background-color: #41a6ca;
+  border-radius: 10px;
+  border: 1px solid #009688;
+  display: inline-block;
+  cursor: pointer;
+  color: #d6d5d5;
+  font-family: Arial;
+  font-size: 15px;
+  padding: 6px 13px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #263666;
+}
+
+#btn-registro:hover {
+  background: linear-gradient(to bottom, #004b69 5%, #009688 100%);
+  background-color: #415989;
+}
