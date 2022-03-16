@@ -1,3 +1,4 @@
+import { ModelUsuarioService } from './../modelos/model_usuario';
 import { AmpliarImagenPage } from './../ampliar-imagen/ampliar-imagen.page';
 import { Router } from '@angular/router';
 import { FirebaseService } from './../services/firebase.service';
@@ -7,7 +8,7 @@ import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AlertController, NavController, LoadingController, IonButton, IonInput, ToastController } from '@ionic/angular';
 import { Usuario } from '../interfaces/usuario';
-import { TransferirDatosService } from '../services/transferir-datos.service';
+//import { TransferirDatosService } from '../services/transferir-datos.service';
 
 
 
@@ -40,7 +41,7 @@ export class EditarPerfilPage implements OnInit, OnDestroy {
     private firebaseService: FirebaseService,
     private router: Router,
     private loading: LoadingController,
-    private transferirDatosService: TransferirDatosService,
+    private model_usuario: ModelUsuarioService,
     private toastCont: ToastController) {
     this.consultarDatosUsuario("usuarios", "uid", "==", localStorage.getItem("userUid"));
     this.usuario = {} as Usuario;
@@ -128,7 +129,7 @@ export class EditarPerfilPage implements OnInit, OnDestroy {
     //this.ampliarImagenPage;
     //this.ampliarImagenPage.recibirUrlFoto(this.usuario.urlFoto);
     //this.transferirDatosService.setDato(this.usuario.urlFoto);
-    this.transferirDatosService.setUsuario(this.usuario);
+    this.model_usuario.setUsuario(this.usuario);
     this.router.navigate(['/ampliar-imagen/' + this.idUser]);
 
   }

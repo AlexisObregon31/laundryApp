@@ -47,6 +47,7 @@
     <ion-label position="floating">Confirmar seña</ion-label>
     <ion-input type="password" [(ngModel)]="controlClave" required="true"></ion-input>
   </ion-item>
+
   <ion-item lines="none">
     <button class="botones" id="btn-registrar" color="none" (click)="signup()" type="reset">Registrar
     </button>
@@ -54,6 +55,10 @@
 
   <ion-item lines="none">
     <a class="lbl-mensaje" href="/login">¿Ya tienes un usuario?</a>
+  </ion-item>
+
+  <ion-item lines="none">
+    <a class="lbl-mensaje" id="lbl-negocio" href="/perfil-empresa">Registra tu negocio</a>
   </ion-item>
 
 </ion-content>

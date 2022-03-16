@@ -44,8 +44,8 @@ const routes: Routes = [
     loadChildren: () => import('./perfil-empresa/perfil-empresa.module').then(m => m.PerfilEmpresaPageModule)
   },
   {
-    path: 'servicio-objeto',
-    loadChildren: () => import('./servicio-objeto/servicio-objeto.module').then(m => m.ServicioObjetoPageModule)
+    path: 'servicio-prenda',
+    loadChildren: () => import('./servicio-prenda/servicio-prenda.module').then(m => m.ServicioPrendaPageModule)
   },
   {
     path: 'prueba-imagen',
@@ -61,7 +61,11 @@ const routes: Routes = [
   },
   {
     path: 'validar-usuario',
-    loadChildren: () => import('./validar-usuario/validar-usuario.module').then( m => m.ValidarUsuarioPageModule)
+    loadChildren: () => import('./validar-usuario/validar-usuario.module').then(m => m.ValidarUsuarioPageModule)
+  },
+  {
+    path: 'prueba',
+    loadChildren: () => import('./prueba/prueba.module').then( m => m.PruebaPageModule)
   }
 ];
 

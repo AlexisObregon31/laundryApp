@@ -1,8 +1,12 @@
 .lbl_info {
-  position: absolute;
+  position: relative;
+  background-position: center center;
   top: 20%;
-  left: 10%;
+  left: 0em;
   text-align: center;
+  align-items: center;
+  margin: 0 auto;
+  display: block;
 }
 
 .alert-recupsena {
@@ -12,9 +16,14 @@
 }
 
 #btn-enviar {
-  position: absolute;
+  position: relative;
   top: 45%;
-  left: 26%;
+  left: 0em;
+  background-position: center center;
+  text-align: center;
+  display: block;
+  align-items: center;
+  margin: 0 auto;
   /*border-radius: 6%;
   letter-spacing: 0.05em;
   font-family: sans-serif;

@@ -1,3 +1,4 @@
+import { ModelUsuarioService } from './../modelos/model_usuario';
 import { FirebaseService } from './../services/firebase.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Usuario } from '../interfaces/usuario';
-import { TransferirDatosService } from '../services/transferir-datos.service';
+//import { TransferirDatosService } from '../services/transferir-datos.service';
 import { ToastController } from '@ionic/angular';
 
 export interface imageData {
@@ -44,13 +45,13 @@ export class AmpliarImagenPage implements OnInit {
     private loading: LoadingController,
     private fireauth: AngularFireAuth,
     private activedRoute: ActivatedRoute,
-    private transferirDatosService: TransferirDatosService,
+    private modelUsuario: ModelUsuarioService,
     private firestoreService: FirebaseService,
     private router: Router,
     private toastCont: ToastController) {
     this.isLoading = false;
     this.isLoaded = false;
-    this.usuario = this.transferirDatosService.getUsuario();
+    this.usuario = this.modelUsuario.getUsuario();
     this.idUser = this.activedRoute.snapshot.params.id;
     console.log(this.idUser + " - " + this.usuario.urlFoto + "-" + this.usuario.nombre);
   }

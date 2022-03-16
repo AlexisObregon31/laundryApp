@@ -13,7 +13,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<!--<ion-content>
   <ion-list class="lista">
 
     <ion-item-sliding>
@@ -24,7 +24,7 @@
         <ion-label>&nbsp;Lavandería 2 Hermanos</ion-label>
       </ion-item>
       <ion-item-options side="end">
-        <!--<ion-item-option (click)="unread(item)">Unread</ion-item-option>-->
+        <!--<ion-item-option (click)="unread(item)">Unread</ion-item-option> **línea comentada**
       </ion-item-options>
     </ion-item-sliding>
 
@@ -36,7 +36,7 @@
         <ion-label>&nbsp;Lavandería Los Cafres</ion-label>
       </ion-item>
       <ion-item-options side="end">
-        <!--<ion-item-option (click)="unread(item)">Unread</ion-item-option>-->
+        <!--<ion-item-option (click)="unread(item)">Unread</ion-item-option> **línea comentada**
       </ion-item-options>
     </ion-item-sliding>
 
@@ -48,8 +48,29 @@
         <ion-label>&nbsp;Lavandería Las Marías</ion-label>
       </ion-item>
       <ion-item-options side="end">
-        <!--<ion-item-option (click)="unread(item)">Unread</ion-item-option>-->
+        <!--<ion-item-option (click)="unread(item)">Unread</ion-item-option> **línea comentada**
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+</ion-content>-->
+
+<ion-content [fullscreen]="true">
+  <ion-list *ngFor="let listLavanderias of arrayLavanderias">
+    <ion-item button>
+      <ion-grid>
+        <ion-row>
+          <ion-thumbnail>
+            <img [src]=listLavanderias.data.urlFoto>
+          </ion-thumbnail>
+          <ion-label>{{ listLavanderias.data.nombre }}</ion-label>
+          <ion-label class="direccion">
+            {{ listLavanderias.data.direccion }}
+          </ion-label>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+
 </ion-content>
+
+<!--routerLink="/perfil-empresa" routerDirection="forward"-->

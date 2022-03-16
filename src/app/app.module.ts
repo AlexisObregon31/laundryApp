@@ -19,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //import { Observable } from 'rxjs/Observable';
 //import { of } from 'rxjs/observable/of';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -40,7 +41,8 @@ import { HttpClientModule } from '@angular/common/http';
     AngularFireDatabaseModule,
     ReactiveFormsModule,
     FormsModule,
-    AmpliarImagenPageModule
+    AmpliarImagenPageModule,
+    BrowserAnimationsModule
   ],
   providers: [
     StatusBar,

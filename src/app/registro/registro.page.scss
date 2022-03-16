@@ -12,8 +12,12 @@ ion-title {
 #btn-registrar {
   background-position: center center;
   text-align: center;
-  position: absolute;
-  left: 5em;
+  position: relative;
+  left: 0em;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  display: block;
 }
 
 .acceder:before {
@@ -32,10 +36,16 @@ ion-title {
 }
 
 .lbl-mensaje {
-  position: absolute;
+  position: relative;
   background-position: center center;
-  position: center;
   text-align: center;
-  left: 2.5em;
+  left: 0em;
+  display: block;
+  align-items: center;
+  margin: 0 auto;
 }
 
+#lbl-negocio {
+  top: auto;
+  color: rgb(1, 150, 138);
+}

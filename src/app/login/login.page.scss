@@ -24,12 +24,16 @@ ion-title {
 }
 
 #btn-acceder {
-  position: absolute;
+  position: relative;
   text-align: center;
   background-position: center center;
   top: 2em;
+  left: 0em;
   border-radius: 10px;
-
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  display: block;
 }
 
 #btn-registro {
@@ -45,7 +49,7 @@ ion-title {
   background-color: #41a6ca;
   border-radius: 10px;
   border: 1px solid #009688;
-  display: inline-block;
+  display: block;
   cursor: pointer;
   color: #d6d5d5;
   font-family: Arial;
@@ -53,6 +57,8 @@ ion-title {
   padding: 6px 13px;
   text-decoration: none;
   text-shadow: 0px 1px 0px #263666;
+  left: 0em;
+  margin: 0 auto;
 }
 
 #btn-registro:hover {

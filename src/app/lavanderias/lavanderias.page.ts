@@ -1,3 +1,5 @@
+import { Lavanderia } from './../interfaces/lavanderia';
+import { FirebaseService } from './../services/firebase.service';
 import { LoadingController, NavController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Component, OnInit } from '@angular/core';
@@ -9,9 +11,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LavanderiasPage implements OnInit {
 
+  arrayLavanderias: any = [{
+    id: "",
+    data: {} as Lavanderia
+  }];
+
   constructor(private loading: LoadingController,
-    private navCtrl: NavController) {
-    //this.btnUsuario();
+    private navCtrl: NavController,
+    private firebaseService: FirebaseService) {
+    this.listarLavanderias();
   }
 
   ngOnInit() {
@@ -35,4 +43,24 @@ export class LavanderiasPage implements OnInit {
     }
     load.dismiss();
   }
+
+  listarLavanderias() {
+    console.log("Listando Lavanderías");
+    this.firebaseService.consultar("usuarios", "tipo", "==", "empresa").subscribe((resConsulta) => {
+      this.arrayLavanderias = [];
+      resConsulta.forEach((datos: any) => {
+        //console.log(datosServicios.payload.doc.data().fecha_hora);
+        this.arrayLavanderias.push({
+          id: datos.payload.doc.id,
+          data: datos.payload.doc.data()
+        });
+      })
+    });
+    console.log(this.arrayLavanderias.data);
+  }
+
+  clicBotonVerEmpresa() {
+
+  }
+
 }

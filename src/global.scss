@@ -54,3 +54,18 @@
   background: linear-gradient(to bottom, #415989 5%, #4596b3 100%);
   background-color: #415989;
 }
+
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none;
+  overflow: hidden;
+}
+
+ion-content {
+  overflow: hidden;
+  --overflow: hidden;
+}
+
+.scroll-content {
+  overflow: hidden;
+}
