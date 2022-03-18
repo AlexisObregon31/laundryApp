@@ -56,7 +56,7 @@
 
 <ion-content [fullscreen]="true">
   <ion-list *ngFor="let listLavanderias of arrayLavanderias">
-    <ion-item button>
+    <ion-item button (click)="verLavanderia(listLavanderias.data)">
       <ion-grid>
         <ion-row>
           <ion-thumbnail>

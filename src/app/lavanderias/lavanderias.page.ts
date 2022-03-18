@@ -1,8 +1,11 @@
+import { Router } from '@angular/router';
+import { ModelUsuarioService } from './../modelos/model_usuario';
 import { Lavanderia } from './../interfaces/lavanderia';
 import { FirebaseService } from './../services/firebase.service';
 import { LoadingController, NavController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from '../interfaces/usuario';
 
 @Component({
   selector: 'app-lavanderias',
@@ -13,12 +16,14 @@ export class LavanderiasPage implements OnInit {
 
   arrayLavanderias: any = [{
     id: "",
-    data: {} as Lavanderia
+    data: {} as Usuario
   }];
 
   constructor(private loading: LoadingController,
     private navCtrl: NavController,
-    private firebaseService: FirebaseService) {
+    private firebaseService: FirebaseService,
+    private model_usuario: ModelUsuarioService,
+    private router: Router) {
     this.listarLavanderias();
   }
 
@@ -26,6 +31,8 @@ export class LavanderiasPage implements OnInit {
   }
   emailUser;
   usuarioLogueado;
+  usuario;
+
 
   async btnUsuario() {
     this.emailUser = localStorage.getItem("emailUser");
@@ -46,7 +53,7 @@ export class LavanderiasPage implements OnInit {
 
   listarLavanderias() {
     console.log("Listando Lavanderías");
-    this.firebaseService.consultar("usuarios", "tipo", "==", "empresa").subscribe((resConsulta) => {
+    this.firebaseService.consultar("usuarios", "tipo", "==", "empresa").subscribe((resConsulta) => {//se busca usuarios de tipo empresa
       this.arrayLavanderias = [];
       resConsulta.forEach((datos: any) => {
         //console.log(datosServicios.payload.doc.data().fecha_hora);
@@ -59,8 +66,12 @@ export class LavanderiasPage implements OnInit {
     console.log(this.arrayLavanderias.data);
   }
 
-  clicBotonVerEmpresa() {
-
+  verLavanderia(datos: any) {
+    this.usuario as Usuario;
+    this.usuario = datos;
+    console.log(this.usuario);
+    this.model_usuario.setUsuario(this.usuario);
+    this.router.navigate(['/servicio-prenda']);
   }
 
 }

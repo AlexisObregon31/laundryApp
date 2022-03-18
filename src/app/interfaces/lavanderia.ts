@@ -5,3 +5,4 @@ export interface Lavanderia {
   urlFoto: string;
   direccion: string;
 }
+

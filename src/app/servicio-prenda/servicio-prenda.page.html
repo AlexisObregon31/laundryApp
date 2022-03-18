@@ -6,10 +6,23 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title class="title" color="primary"> Registrar Servicio</ion-title>
+    <ion-title class="title" color="primary"></ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content [fullscreen]="true">
+  <div class="cabecera">
+    <ion-button color="none" class="btn-perfil">
+      <ion-thumbnail class="foto-empresa">
+        <img class="foto" [src]=this.usuario.urlFoto>
+      </ion-thumbnail>
+    </ion-button>
+  </div>
 </ion-content>
+
+<!--<ion-button color="none" class="btn-perfil" (click)="goToAmpliarImagen()">
+  <ion-avatar class="avatar-perfil">
+    <!--<img src="../../assets/icon/imagePlaceholder.jpg">
+    <img [src]="usuario.urlFoto">
+  </ion-avatar>
+</ion-button>-->
