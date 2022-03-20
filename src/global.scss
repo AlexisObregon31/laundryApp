@@ -69,3 +69,12 @@ ion-content {
 .scroll-content {
   overflow: hidden;
 }
+
+.ion-color-azulneon {
+  --ion-color-base: var(--ion-color-azulneon);
+  --ion-color-base-rgb: var(--ion-color-azulneon-rgb);
+  --ion-color-contrast: var(--ion-color-azulneon-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-azulneon-contrast-rgb);
+  --ion-color-shade: var(--ion-color-azulneon-shade);
+  --ion-color-tint: var(--ion-color-azulneon-tint);
+}

@@ -47,3 +47,37 @@ ion-icon {
   margin: 0 auto;
   size: auto;
 }
+
+.lbl-nombre {
+  position: absolute;
+  left: 5em;
+  top: 2%;
+}
+
+.lbl-direccion {
+  font-family: Arial, Helvetica, sans-serif;
+  position: absolute;
+  top: 4em;
+  left: 2%;
+}
+
+.foto {
+  width: 4.5em;
+  height: 4em;
+  border: 4px solid rgba(45, 107, 177, 0.685);
+  //border-color: rgba(45, 107, 177, 0.685);
+}
+
+.div {
+  width: 100%;
+  padding: 0%;
+  margin: 0%;
+  height: 6em;
+}
+
+.btn-item {
+  width: 100%;
+  height: auto;
+  padding: 0%;
+  margin: 0%;
+}

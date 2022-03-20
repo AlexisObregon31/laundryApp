@@ -1,5 +1,5 @@
 ion-title {
-  color: rgb(16, 95, 185);
+  text-align: center;
 }
 
 .alert-login {
@@ -10,10 +10,38 @@ ion-title {
   background-position: center center;
 }
 
+.icono {
+  --ion-background-color: transparent !important;
+  box-shadow: none;
+  text-align: center;
+  align-items: center;
+  height: 13em;
+  width: 14em;
+  outline: none;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
+}
+
+.inp {
+  text-align: center;
+  border: #004b69 solid 3px;
+  border-radius: 3em;
+}
+
 .div {
   position: relative;
   background-position: center center;
   text-align: center;
+  align-items: center;
+  top: 0%;
+}
+
+.div-label {
+  margin-left: 3em;
+  margin-right: 3em;
+  margin-top: 1em;
 }
 
 .lbl-recup-sena {
@@ -27,13 +55,16 @@ ion-title {
   position: relative;
   text-align: center;
   background-position: center center;
-  top: 2em;
-  left: 0em;
+  top: 4%;
   border-radius: 10px;
-  margin: 0 auto;
+  //margin: 0 auto;
   justify-content: center;
+  //align-items: center;
+}
+
+.div-acceder {
+  text-align: center;
   align-items: center;
-  display: block;
 }
 
 #btn-registro {

@@ -4,25 +4,41 @@
       <img class="iconLaundry" src="assets/icon/iconLaundrySinNombre.png">
     </ion-thumbnail>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-menu-button color="azulneon"></ion-menu-button>
     </ion-buttons>
-    <ion-title>Login</ion-title>
+    <div style="position: relative; display: inline-block; align-items: center; ">
+      <ion-title color="azulneon">Login</ion-title>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-label position="floating">Email</ion-label>
-    <ion-input required="true" type="email" placeholder="ejemplo@gmail.com" [(ngModel)]="email">
-    </ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Contraseña</ion-label>
-    <ion-input required="true" type="password" [(ngModel)]="password" placeholder="*********"></ion-input>
-  </ion-item>
   <div class="div">
-    <button id="btn-acceder" color="none" class="botones" (click)="login()" routerDirection="forward">Acceder
-    </button>
+    <ion-thumbnail class="icono">
+      <img src="assets\icon\iconlaundryapp.png">
+    </ion-thumbnail>
+  </div>
+
+  <div class="div-label">
+    <ion-item class="inp">
+      <ion-label position="floating" color="azulneon" style="font-size: large;">Email</ion-label>
+      <ion-input required="true" type="email" placeholder="ejemplo@gmail.com" [(ngModel)]="email">
+      </ion-input>
+    </ion-item>
+  </div>
+
+  <div class="div-label">
+    <ion-item class="inp">
+      <ion-label position="floating" color="azulneon" style="font-size: large;">Contraseña</ion-label>
+      <ion-input required="true" type="password" [(ngModel)]="password" placeholder="*********"></ion-input>
+    </ion-item>
+  </div>
+
+  <div class="div">
+    <div class="div-acceder">
+      <ion-button id="btn-acceder" color="azulneon" (click)="login()" routerDirection="forward">Acceder
+      </ion-button>
+    </div>
     <a class="lbl-recup-sena" href="/recup-sena">Olvidé mi contraseña</a>
     <button id="btn-registro" color="none" routerLink="/registro" routerDirection="forward">Crear una
       cuenta</button>
