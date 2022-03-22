@@ -44,7 +44,7 @@ export class RecupSenaPage implements OnInit {
     });
     await loading.present();
   }
-  
+
   async closeLoading() {
     return await this.loadingController.dismiss();
   }
@@ -74,12 +74,14 @@ export class RecupSenaPage implements OnInit {
     const toast = await this.toastController.create({
       message,
       duration,
-      position,
+      position: 'middle',
       buttons: [
         {
           side: 'start',
-          icon: 'close-outline'
-        }]
+          icon: 'close-outline',
+        }],
+      color: 'warning',
+      //translucent: true
     });
     toast.present();
   }

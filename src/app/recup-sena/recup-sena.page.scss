@@ -1,12 +1,18 @@
 .lbl_info {
   position: relative;
   background-position: center center;
-  top: 20%;
+  margin-top: 8em;
   left: 0em;
   text-align: center;
   align-items: center;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   display: block;
+  font-size: large;
+}
+
+.btn-back {
+  position: relative;
 }
 
 .alert-recupsena {
@@ -15,15 +21,42 @@
   left: 20%;
 }
 
+.div-label {
+  position: relative;
+  margin-top: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 18em;
+  height: 5em;
+  align-items: center;
+  text-align: center;
+  margin-top: 2em;
+}
+
+.item {
+  text-align: center;
+  border: #004b69 solid 3px;
+  border-radius: 3em;
+}
+
+.div-boton {
+  text-align: center;
+  align-items: center;
+  margin-top: 1em;
+  width: 8em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #btn-enviar {
   position: relative;
-  top: 45%;
+  margin-top: 3em;
   left: 0em;
   background-position: center center;
   text-align: center;
   display: block;
   align-items: center;
-  margin: 0 auto;
+  //margin: 0 auto;
   /*border-radius: 6%;
   letter-spacing: 0.05em;
   font-family: sans-serif;
@@ -37,7 +70,7 @@
     -6px -6px 20px -1px #e3e4f0;*/
 }
 
-.btn-enviar:before {
+/*.btn-enviar:before {
   content: "";
   position: absolute;
   top: 0px;
@@ -50,4 +83,4 @@
 
 .btn-enviar:hover:before {
   width: 100%;
-}
+}*/

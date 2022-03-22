@@ -2,13 +2,9 @@ ion-title {
   text-align: center;
 }
 
-.alert-login {
-  position: absolute;
-  top: 30%;
-  left: 20%;
-  text-align: center;
-  background-position: center center;
-}
+/*.ion-alert {
+
+}*/
 
 .icono {
   --ion-background-color: transparent !important;
@@ -24,7 +20,7 @@ ion-title {
   margin-top: 0.5em;
 }
 
-.inp {
+.item {
   text-align: center;
   border: #004b69 solid 3px;
   border-radius: 3em;
@@ -56,6 +52,7 @@ ion-title {
   align-items: center;
   width: 8em;
   height: 8em;
+  margin-top: 0.5em;
 }
 
 .lbl-recup-sena {
@@ -102,4 +99,5 @@ ion-title {
 
 .input {
   text-align: left;
+  margin-left: 1em;
 }

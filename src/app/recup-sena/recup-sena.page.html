@@ -5,34 +5,31 @@
       <img src="assets/icon/iconlaundryapp.png">
     </ion-thumbnail>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-button class="btn-back" color="none" routerLink="/login" routerDirection="forward">
+        <ion-icon name="arrow-back-circle-outline" size="large"></ion-icon>
+      </ion-button>
     </ion-buttons>
-    <ion-title style="position: absolute; left:11%; top:35%">¿Olvidó su seña?</ion-title>
+    <ion-title color="azulneon" style="position: absolute; left:11%; top:35%">¿Olvidó su seña?</ion-title>
 
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <div style="position: absolute; top:32%; left:0%; width: 100%;">
-    <ion-item>
+  <ion-label class="lbl_info" color="azulneon">Cambiar contraseña por correo</ion-label>
+
+  <div class="div-label">
+    <ion-item class="item">
       <ion-label position="floating" style="size:large;">Email</ion-label>
-      <ion-input style="text-align: center;" type="email" placeholder="ejemplo@gmail.com" [(ngModel)]="email">
+      <ion-input style="text-align: left; margin-left: 1em;" type="email" placeholder="ejemplo@gmail.com"
+        [(ngModel)]="email">
       </ion-input>
     </ion-item>
   </div>
 
+  <div class="div-boton">
+    <ion-button id="btn-enviar" color="azulneon" (click)="recover()" routerDirection="forward">Enviar
+    </ion-button>
 
-  <button id="btn-enviar" class="botones" color="none" (click)="recover()" routerDirection="forward">Enviar
-  </button>
-  <ion-label class="lbl_info" color="primary">Cambiar contraseña
-    por correo</ion-label>
-
-
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button routerLink="/login" routerDirection="forward">
-      <ion-icon name="exit"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-
+  </div>
 </ion-content>

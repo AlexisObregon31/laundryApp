@@ -4,13 +4,13 @@
       <img src="assets/icon/iconlaundryapp.png">
     </ion-thumbnail>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-menu-button color="azulneon"></ion-menu-button>
     </ion-buttons>
-    <ion-title>Registrarse</ion-title>
+    <ion-title color="azulneon">Registrarse</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
   <ion-item>
     <ion-label position="floating">Nombre</ion-label>
     <ion-input #inpNombre [(ngModel)]="usuario.nombre" required="true" placeholder="Ingrese su nombre y apellido">

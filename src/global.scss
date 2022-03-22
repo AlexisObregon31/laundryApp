@@ -61,6 +61,35 @@
   overflow: hidden;
 }
 
+.ion-alert {
+  //color-scheme: rgba(0, 195, 255, 0.664);
+  position: absolute;
+  //margin-top: 4em;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  background-position: center center;
+  background-color: none;
+
+  .alert-wrapper {
+    border-radius: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+    background-color: rgb(247, 247, 247);
+    align-items: center;
+    text-align: center;
+
+    .alert-head {
+      align-items: center;
+      text-align: center;
+
+      h2 {
+        color: #063852;
+      }
+    }
+  }
+}
+
 ion-content {
   overflow: hidden;
   --overflow: hidden;

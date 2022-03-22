@@ -32,7 +32,7 @@ export class LoginPage implements OnInit {
 
   async avisoLogin() {
     const alert = await this.alertController.create({
-      cssClass: 'alert-login',
+      cssClass: 'ion-alert',
       header: this.headerAlert,
       subHeader: this.subHeader,
       //message: 'Registro de Usuario exitoso !',
