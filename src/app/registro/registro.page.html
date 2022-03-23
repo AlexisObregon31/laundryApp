@@ -9,56 +9,71 @@
     <ion-title color="azulneon">Registrarse</ion-title>
   </ion-toolbar>
 </ion-header>
+<!--class="content" [scrollEvents]="true" scroll="true" overflow-scroll="true"-->
+<ion-content>
+  <div class="scroll">
+    <div class="div-label">
+      <ion-item class="item">
+        <ion-label color="azulneon" position="floating">Nombre</ion-label>
+        <ion-input #inpNombre [(ngModel)]="usuario.nombre" required="true" placeholder="Ingrese su nombre y apellido">
+        </ion-input>
+      </ion-item>
+    </div>
 
-<ion-content [fullscreen]="true">
-  <ion-item>
-    <ion-label position="floating">Nombre</ion-label>
-    <ion-input #inpNombre [(ngModel)]="usuario.nombre" required="true" placeholder="Ingrese su nombre y apellido">
-    </ion-input>
-  </ion-item>
+    <div class="div-label">
+      <ion-item class="item">
+        <ion-label position="floating">Dirección</ion-label>
+        <ion-input [(ngModel)]="usuario.direccion" required="true" placeholder="Ciudad, Barrio"></ion-input>
+      </ion-item>
+    </div>
 
-  <ion-item>
-    <ion-label position="floating">Dirección</ion-label>
-    <ion-input [(ngModel)]="usuario.direccion" required="true" placeholder="Ciudad, Barrio"></ion-input>
-  </ion-item>
+    <div class="div-label">
+      <ion-item class="item">
+        <ion-label position="floating">CI/RUC</ion-label>
+        <ion-input [(ngModel)]="usuario.ci_ruc" required="true"></ion-input>
+      </ion-item>
+    </div>
 
-  <ion-item>
-    <ion-label position="floating">CI/RUC</ion-label>
-    <ion-input [(ngModel)]="usuario.ci_ruc" required="true"></ion-input>
-  </ion-item>
+    <div class="div-label">
+      <ion-item class="item">
+        <ion-label position="floating">Nº Celular</ion-label>
+        <ion-input [(ngModel)]="usuario.celular" required="true" placeholder="09xx xxx xxx"></ion-input>
+      </ion-item>
+    </div>
 
-  <ion-item>
-    <ion-label position="floating">Nº Celular</ion-label>
-    <ion-input [(ngModel)]="usuario.celular" required="true" placeholder="09xx xxx xxx"></ion-input>
-  </ion-item>
+    <div class="div-label">
+      <ion-item class="item">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input [(ngModel)]="usuario.email" required="true" placeholder="ejemplo@gmail.com"></ion-input>
+      </ion-item>
+    </div>
 
-  <ion-item>
-    <ion-label position="floating">Email</ion-label>
-    <ion-input [(ngModel)]="usuario.email" required="true" placeholder="ejemplo@gmail.com"></ion-input>
-  </ion-item>
+    <div class="div-label">
+      <ion-item class="item">
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input #inpControlSeña type="password" [(ngModel)]="usuario.clave" required="true"
+          placeholder="Mayor a 6 caracteres"></ion-input>
+      </ion-item>
+    </div>
 
-  <ion-item>
-    <ion-label position="floating">Contraseña</ion-label>
-    <ion-input #inpControlSeña type="password" [(ngModel)]="usuario.clave" required="true"
-      placeholder="Mayor a 6 caracteres"></ion-input>
-  </ion-item>
+    <div class="div-label">
+      <ion-item lines="inset">
+        <ion-label position="floating">Confirmar seña</ion-label>
+        <ion-input type="password" [(ngModel)]="controlClave" required="true"></ion-input>
+      </ion-item>
+    </div>
 
-  <ion-item lines="inset">
-    <ion-label position="floating">Confirmar seña</ion-label>
-    <ion-input type="password" [(ngModel)]="controlClave" required="true"></ion-input>
-  </ion-item>
+    <div class="div">
+      <ion-button color="azulneon" id="btn-registrar" (click)="signup()" type="reset">Registrar
+      </ion-button>
 
-  <ion-item lines="none">
-    <button class="botones" id="btn-registrar" color="none" (click)="signup()" type="reset">Registrar
-    </button>
-  </ion-item>
+      <ion-item lines="none">
+        <a class="lbl-mensaje" href="/login">¿Ya tienes un usuario?</a>
+      </ion-item>
 
-  <ion-item lines="none">
-    <a class="lbl-mensaje" href="/login">¿Ya tienes un usuario?</a>
-  </ion-item>
-
-  <ion-item lines="none">
-    <a class="lbl-mensaje" id="lbl-negocio" href="/perfil-empresa">Registra tu negocio</a>
-  </ion-item>
-
+      <ion-item lines="none">
+        <a class="lbl-mensaje" color="verde-neon" id="lbl-negocio" href="/perfil-empresa">Registra tu lavanderia</a>
+      </ion-item>
+    </div>
+  </div>
 </ion-content>

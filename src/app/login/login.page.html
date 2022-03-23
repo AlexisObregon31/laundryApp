@@ -13,36 +13,38 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="div">
-    <ion-thumbnail class="icono">
-      <img src="assets\icon\iconlaundryapp.png">
-    </ion-thumbnail>
-  </div>
-
-  <div class="div-label">
-    <ion-item class="item">
-      <ion-label position="floating" color="azulneon" style="font-size: large;">Email</ion-label>
-      <ion-input required="true" type="email" [(ngModel)]="email" class="input">
-      </ion-input>
-    </ion-item>
-  </div>
-
-  <div class="div-label">
-    <ion-item class="item">
-      <ion-label position="floating" color="azulneon" style="font-size: large;">Contraseña</ion-label>
-      <ion-input required="true" type="password" [(ngModel)]="password" class="input"></ion-input>
-    </ion-item>
-  </div>
-
-  <div class="div">
-    <div class="div-boton">
-      <ion-button id="btn-acceder" color="azulneon" (click)="login()" routerDirection="forward">Acceder
-      </ion-button>
+  <div class="scroll">
+    <div class="div">
+      <ion-thumbnail class="icono">
+        <img src="assets\icon\iconlaundryapp.png">
+      </ion-thumbnail>
     </div>
-    <a class="lbl-recup-sena" href="/recup-sena">Olvidé mi contraseña</a>
-    <div class="div-boton">
-      <ion-button id="btn-registro" color="verde-neon" routerLink="/registro" routerDirection="forward">Crear una
-        cuenta</ion-button>
+
+    <div class="div-label">
+      <ion-item class="item">
+        <ion-label position="floating" color="azulneon" style="font-size: large;">Email</ion-label>
+        <ion-input required="true" type="email" [(ngModel)]="email" class="input">
+        </ion-input>
+      </ion-item>
+    </div>
+
+    <div class="div-label">
+      <ion-item class="item">
+        <ion-label position="floating" color="azulneon" style="font-size: large;">Contraseña</ion-label>
+        <ion-input required="true" type="password" [(ngModel)]="password" class="input"></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="div">
+      <div class="div-boton">
+        <ion-button id="btn-acceder" color="azulneon" (click)="login()" routerDirection="forward">Acceder
+        </ion-button>
+      </div>
+      <a class="lbl-recup-sena" href="/recup-sena">Olvidé mi contraseña</a>
+      <div class="div-boton">
+        <ion-button id="btn-registro" color="verde-neon" routerLink="/registro" routerDirection="forward">Crear una
+          cuenta</ion-button>
+      </div>
     </div>
   </div>
 </ion-content>

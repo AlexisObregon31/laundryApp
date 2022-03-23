@@ -1,13 +1,35 @@
-ion-title {
-  color: rgb(16, 95, 185);
+.div-label {
+  position: relative;
+  margin-top: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 18em;
+  height: auto;
+  align-items: center;
+  text-align: center;
 }
 
-.alert-registro {
-  position: absolute;
-  top: 30%;
-  left: 20%;
+.item {
+  text-align: center;
+  border: #004b69 solid 3px;
+  border-radius: 3em;
+  height: auto;
 }
 
+.div {
+  position: relative;
+  background-position: center center;
+  text-align: center;
+  align-items: center;
+  top: 0%;
+  margin-bottom: 0.5em;
+}
+
+.div-boton {
+  text-align: center;
+  align-items: center;
+  margin-top: 1em;
+}
 
 #btn-registrar {
   background-position: center center;
@@ -18,21 +40,6 @@ ion-title {
   align-items: center;
   margin: 0 auto;
   display: block;
-}
-
-.acceder:before {
-  content: "";
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 0px;
-  height: 100%;
-  background: rgba(1, 115, 150, 0.432);
-  transition: all 1s ease;
-}
-
-.acceder:hover:before {
-  width: 100%;
 }
 
 .lbl-mensaje {
@@ -46,6 +53,7 @@ ion-title {
 }
 
 #lbl-negocio {
+  position: relative;
   top: auto;
   color: rgb(1, 150, 138);
 }

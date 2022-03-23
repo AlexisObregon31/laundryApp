@@ -33,6 +33,18 @@
   height: 3.5em;
 }
 
+.scroll {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  overflow: auto;
+  scroll-width: none; //Para Firefox
+}
+
+.scroll::-webkit-scrollbar {
+  width: 0;
+}
+
 
 .botones {
   box-shadow: inset 0px 0px 15px 3px #01295e;

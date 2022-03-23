@@ -72,7 +72,7 @@ export class RegistroPage implements OnInit, OnDestroy {
 
   async avisoRegistro(mensaje: string) {
     const alert = await this.alertController.create({
-      cssClass: 'alert-registro',
+      cssClass: 'ion-alert',
       header: mensaje,
       subHeader: "Para continuar, verifique el correo enviado para validar su cuenta !",
       //message: 'Registro de Usuario exitoso !',
@@ -85,7 +85,7 @@ export class RegistroPage implements OnInit, OnDestroy {
     const toast = await this.toastCont.create({
       //header: mensage,
       message,
-      color: 'dark',
+      color: 'warning',
       duration: 3000,
       //message: 'Click to Close',
       //position: posicion,
