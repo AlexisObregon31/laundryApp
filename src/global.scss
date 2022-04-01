@@ -67,11 +67,11 @@
   background-color: #415989;
 }
 
-::-webkit-scrollbar,
+/*::-webkit-scrollbar,
 *::-webkit-scrollbar {
   display: none;
   overflow: hidden;
-}
+}*/
 
 .ion-alert {
   //color-scheme: rgba(0, 195, 255, 0.664);
@@ -100,6 +100,21 @@
       }
     }
   }
+}
+
+.div-boton {
+  text-align: center;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.boton-azul {
+  position: relative;
+  text-align: center;
+  background-position: center center;
+  top: 4%;
+  border-radius: 10px;
+  justify-content: center;
 }
 
 ion-content {

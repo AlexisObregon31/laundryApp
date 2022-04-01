@@ -1,6 +1,6 @@
 .div-label {
   position: relative;
-  margin-top: 1em;
+  margin-top: 1.5em;
   margin-left: auto;
   margin-right: auto;
   width: 18em;
@@ -9,11 +9,25 @@
   text-align: center;
 }
 
+#fondo {
+  //background: url('../../assets/img/fondo_registro.jpg');
+  //opacity: 0.4;
+  //filter: alpha(opacity=40);
+}
+
+#img {
+  position: absolute;
+  display: inline-block;
+  //
+}
+
 .item {
-  text-align: center;
+  text-align: left;
   border: #004b69 solid 3px;
-  border-radius: 3em;
-  height: auto;
+  border-radius: 1em;
+  height: 3.3em;
+  margin-left: 1em;
+  margin-right: 1em;
 }
 
 .div {
@@ -25,22 +39,6 @@
   margin-bottom: 0.5em;
 }
 
-.div-boton {
-  text-align: center;
-  align-items: center;
-  margin-top: 1em;
-}
-
-#btn-registrar {
-  background-position: center center;
-  text-align: center;
-  position: relative;
-  left: 0em;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  display: block;
-}
 
 .lbl-mensaje {
   position: relative;
@@ -50,10 +48,13 @@
   display: block;
   align-items: center;
   margin: 0 auto;
+  font-size: large;
+  margin-top: 1em;
 }
 
 #lbl-negocio {
   position: relative;
   top: auto;
   color: rgb(1, 150, 138);
+  margin-bottom: 1em;
 }
