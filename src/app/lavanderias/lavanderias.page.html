@@ -6,7 +6,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title class="titulos">Laundry App</ion-title>
+    <ion-title color="azulneon" class="titulos">Laundry App</ion-title>
     <ion-button (click)="btnUsuario()" class="btn-login" color="none">
       <ion-icon size="large" name="person-circle"></ion-icon>
     </ion-button>
@@ -54,12 +54,12 @@
   </ion-list>
 </ion-content>-->
 
-<ion-content [fullscreen]="true">
+<ion-content>
   <ion-list *ngFor="let listLavanderias of arrayLavanderias">
     <ion-item button class="btn-item" (click)="verLavanderia(listLavanderias.data)">
       <div class="div">
         <ion-thumbnail class="foto">
-          <img [src]=listLavanderias.data.urlFoto>
+          <img style="border-radius: 0.5em;" [src]=listLavanderias.data.urlFoto>
         </ion-thumbnail>
       </div>
       <ion-label class="lbl-nombre">{{ listLavanderias.data.nombre }}</ion-label>

@@ -10,7 +10,7 @@
     <button class="btn-editar" color="none" (click)="editarDatos()">{{this.txtBtn}}</button>
   </ion-toolbar>
 </ion-header>
-<ion-content [fullscreen] style="margin:auto;">
+<ion-content style="margin:auto;">
 
   <div class="container">
     <ion-button color="none" class="btn-perfil" (click)="goToAmpliarImagen()">
@@ -46,10 +46,16 @@
         <ion-icon name="file-tray-full-outline"></ion-icon>
         <ion-input [readonly]="this.readOnly" value={{usuario.ci_ruc}} [(ngModel)]="usuario.ci_ruc">&nbsp;</ion-input>
       </ion-item>
-      <ion-item lines="none">
-        <button class="botones" id="logout" color="none" (click)="logout()">Cerrar Sesión
-        </button>
-      </ion-item>
+      <div class="div-boton">
+        <ion-button color="azulneon" (click)="logout()">Cerrar Sesión
+        </ion-button>
+      </div>
+
+      <!--<div class="div-boton">
+        <ion-button color="azulneon" id="btn-registrar" class="boton-azul" (click)="signup()" type="reset">Registrar
+        </ion-button>
+      </div>-->
+
     </ion-card-content>
   </ion-card>
 </ion-content>

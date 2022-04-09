@@ -71,7 +71,7 @@ export class LavanderiasPage implements OnInit {
     this.usuario = datos;
     console.log(this.usuario);
     this.model_usuario.setUsuario(this.usuario);
-    this.router.navigate(['/servicio-prenda']);
+    this.router.navigate(['/lavanderia-prenda']);
   }
 
 }

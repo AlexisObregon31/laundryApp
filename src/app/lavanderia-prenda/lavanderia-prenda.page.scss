@@ -1,0 +1,76 @@
+ion-header {
+  --ion-background-color: #063852;
+}
+
+ion-menu-button {
+  color: #c7c2c2;
+}
+
+.title {
+  --background: #3880ff;
+  position: absolute;
+  top: 1em;
+  left: 1.5em;
+  margin: auto;
+}
+
+.cabecera {
+  position: relative;
+  width: 100%;
+  height: 14em;
+  background-color: #063852;
+  text-align: center;
+  top: 0em;
+}
+
+.foto-empresa {
+  margin-top: 1em;
+  --ion-background-color: transparent !important;
+  box-shadow: none;
+  text-align: center;
+  height: 13em;
+  width: 14em;
+  margin: auto;
+  border: 4px solid #6e600a;
+  border-radius: 10%;
+}
+
+.foto {
+  border-radius: 10%;
+}
+
+.btn-perfil {
+  position: relative;
+  width: auto;
+  height: 100%;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  display: block;
+  margin: auto;
+}
+
+.lbl-nombre {
+  position: relative;
+  margin-top: 2%;
+  font-size: 1.3em;
+  margin-left: 3%;
+  margin-bottom: 0%;
+}
+
+.lbl-direcc {
+  position: relative;
+  margin-top: 2%;
+  font-size: large;
+  left: 1em;
+}
+
+
+.div-datos {
+  margin-top: 1em;
+  position: relative;
+}
+
+.item-label {
+  height: auto;
+}

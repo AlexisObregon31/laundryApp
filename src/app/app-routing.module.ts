@@ -24,7 +24,7 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
-    path: 'registro',
+    path: 'registro/:tipo',
     loadChildren: () => import('./registro/registro.module').then(m => m.RegistroPageModule)
   },
   {
@@ -65,7 +65,15 @@ const routes: Routes = [
   },
   {
     path: 'prueba',
-    loadChildren: () => import('./prueba/prueba.module').then( m => m.PruebaPageModule)
+    loadChildren: () => import('./prueba/prueba.module').then(m => m.PruebaPageModule)
+  },
+  {
+    path: 'lavanderia-prenda',
+    loadChildren: () => import('./lavanderia-prenda/lavanderia-prenda.module').then(m => m.LavanderiaPrendaPageModule)
+  },
+  {
+    path: 'tipos-registro',
+    loadChildren: () => import('./tipos-registro/tipos-registro.module').then(m => m.TiposRegistroPageModule)
   }
 ];
 

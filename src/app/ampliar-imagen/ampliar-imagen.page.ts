@@ -37,7 +37,7 @@ export class AmpliarImagenPage implements OnInit {
   authservice: any;
   urlFoto;
   nombre;
-  idUser
+  idUser;
   usuario: Usuario;
 
   constructor(private database: AngularFirestore,

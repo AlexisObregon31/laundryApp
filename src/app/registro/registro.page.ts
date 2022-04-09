@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Usuario } from './../interfaces/usuario';
 import { FirebaseService } from './../services/firebase.service';
 import { UtilService } from './../services/util.service';
@@ -24,6 +25,8 @@ export class RegistroPage implements OnInit, OnDestroy {
   idUser: string;
   controlClave: string;
   load: any;
+  tipoRegistro;
+  esEmpresa: boolean;
 
   constructor(
     private fireauth: AngularFireAuth,
@@ -32,9 +35,14 @@ export class RegistroPage implements OnInit, OnDestroy {
     private utilservice: UtilService,
     private loading: LoadingController,
     private firebaseService: FirebaseService,
-    private toastCont: ToastController) {
+    private toastCont: ToastController,
+    private activedRoute: ActivatedRoute) {
     this.usuario = {} as Usuario; // Asignar valores del modelo a this.usuario, es decir, limpia
-    //this.crearLoad();
+    this.tipoRegistro = this.activedRoute.snapshot.params.tipo;
+    if (this.tipoRegistro == 'empresa')
+      this.esEmpresa = true;
+    else
+      false
   }
 
   ngOnInit() {
@@ -117,10 +125,10 @@ export class RegistroPage implements OnInit, OnDestroy {
         this.fireauth.createUserWithEmailAndPassword(this.usuario.email, this.usuario.clave).then(res => {
           if (res.user) {
             this.usuario.uid = res.user.uid;
-            this.usuario.tipo = "cliente";
+            this.usuario.tipo = this.tipoRegistro;
             console.log("Registro con éxito el User = " + res.user.uid);
             localStorage.setItem("userUid", res.user.uid);
-            localStorage.setItem("tipoUsuario", "cliente");
+            localStorage.setItem("tipoUsuario", this.tipoRegistro);
             this.insertarUsuario();
             this.fireauth.currentUser.then(user => user.sendEmailVerification());
             this.cerrarLoad();

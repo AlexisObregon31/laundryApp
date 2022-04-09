@@ -1,7 +1,7 @@
 {
   "name": "laundryApp",
   "version": "0.0.3",
-  "author": "Ionic Framework",
+  "author": "Alexis Obregón",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",

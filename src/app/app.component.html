@@ -3,22 +3,25 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
-          <br><br><br><br>
-          <ion-thumbnail style=" position: absolute; left:5%; top:0%; width: 110px; height: 100px;">
+          <ion-thumbnail class="iconLaundry">
             <img src="assets/icon/iconlaundryapp.png">
           </ion-thumbnail>
           <ion-menu-toggle auto-hide="false">
-            <ion-item routerDirection="root" routerLink="lavanderias" lines="none" detail="false">
+            <ion-item routerDirection="root" routerLink="lavanderias" detail="false">
               <ion-icon name="home-outline"></ion-icon>
               <ion-label>&nbsp;Lavanderías</ion-label>
             </ion-item>
-            <ion-item button (click)="validarUsuario()" lines="none" detail="false">
+            <ion-item button (click)="validarUsuario('servicio')" detail="false">
               <ion-icon name="list-outline"></ion-icon>
               <ion-label>&nbsp;Servicios</ion-label>
             </ion-item>
-            <ion-item routerDirection="root" routerLink="registro" lines="none" detail="false">
+            <ion-item button (click)="validarUsuario('perfil')" detail="false">
               <ion-icon name="person-add"></ion-icon>
-              <ion-label>&nbsp;Regístrate</ion-label>
+              <ion-label>&nbsp;Editar Perfil</ion-label>
+            </ion-item>
+            <ion-item routerDirection="root" detail="false">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              <ion-label>&nbsp;Acerca de la app</ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>

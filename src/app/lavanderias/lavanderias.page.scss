@@ -1,5 +1,5 @@
 ion-title {
-  color: rgb(16, 95, 185);
+  //color: rgb(16, 95, 185);
   position: absolute;
   left: 10%;
   top: 30%
@@ -64,7 +64,8 @@ ion-icon {
 .foto {
   width: 4.5em;
   height: 4em;
-  border: 4px solid rgba(45, 107, 177, 0.685);
+  border: 3px solid #01295e;
+  border-radius: 0.5em;
   //border-color: rgba(45, 107, 177, 0.685);
 }
 
@@ -73,6 +74,7 @@ ion-icon {
   padding: 0%;
   margin: 0%;
   height: 6em;
+  border-radius: 0.5em;
 }
 
 .btn-item {

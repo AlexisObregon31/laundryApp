@@ -6,7 +6,7 @@
     <ion-buttons slot="start">
       <ion-menu-button color="azulneon"></ion-menu-button>
     </ion-buttons>
-    <ion-title color="azulneon">Registrarse</ion-title>
+    <ion-title color="azulneon">Regístrate</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,7 +14,15 @@
   <div id="fondo" class="scroll">
     <!--<img id="img" src="../../assets/img/fondo_registro.jpg"-->
     <div style="position:relative; display:inline-block"></div>
-    <div class="div-label">
+    <div class="div-label" *ngIf="esEmpresa">
+      <ion-item class="item">
+        <ion-label color="azulneon" position="stacked">Nombre de empresa</ion-label>
+        <ion-input #inpNombre [(ngModel)]="usuario.nombre" required="true" placeholder="Nombre de tu negocio">
+        </ion-input>
+      </ion-item>
+    </div>
+
+    <div class="div-label" *ngIf="!esEmpresa">
       <ion-item class="item">
         <ion-label color="azulneon" position="stacked">Nombre</ion-label>
         <ion-input #inpNombre [(ngModel)]="usuario.nombre" required="true" placeholder="Nombre y apellido">
@@ -29,17 +37,31 @@
       </ion-item>
     </div>
 
-    <div class="div-label">
+    <div class="div-label" *ngIf="esEmpresa">
+      <ion-item class="item">
+        <ion-label color="azulneon" position="stacked">RUC</ion-label>
+        <ion-input [(ngModel)]="usuario.ci_ruc" required="true"></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="div-label" *ngIf="!esEmpresa">
       <ion-item class="item">
         <ion-label color="azulneon" position="stacked">CI o RUC</ion-label>
         <ion-input [(ngModel)]="usuario.ci_ruc" required="true"></ion-input>
       </ion-item>
     </div>
 
-    <div class="div-label">
+    <div class="div-label" *ngIf="esEmpresa">
+      <ion-item class="item">
+        <ion-label color="azulneon" position="stacked">Número del Negocio</ion-label>
+        <ion-input [(ngModel)]="usuario.celular" required="true"></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="div-label" *ngIf="!esEmpresa">
       <ion-item class="item">
         <ion-label color="azulneon" position="stacked">Nº Celular</ion-label>
-        <ion-input [(ngModel)]="usuario.celular" required="true" placeholder="09xx xxx xxx"></ion-input>
+        <ion-input [(ngModel)]="usuario.celular" required="true"></ion-input>
       </ion-item>
     </div>
 
@@ -73,7 +95,7 @@
 
       <a class="lbl-mensaje" href="/login">¿Ya tienes un usuario?</a>
 
-      <a class="lbl-mensaje" color="verde-neon" id="lbl-negocio" href="/perfil-empresa">Registra tu lavandería</a>
+      <!--<a class="lbl-mensaje" color="verde-neon" id="lbl-negocio" href="/perfil-empresa">Registra tu lavandería</a>-->
     </div>
   </div>
 </ion-content>

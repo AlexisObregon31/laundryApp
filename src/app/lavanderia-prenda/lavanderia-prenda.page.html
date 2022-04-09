@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-avatar class="iconLaundry">
+      <img src="assets/icon/iconLaundrySinNombre.png">
+    </ion-avatar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title" color="primary"></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="scroll">
+    <div class="cabecera">
+      <ion-button color="none" class="btn-perfil">
+        <ion-thumbnail class="foto-empresa">
+          <img class="foto" [src]=this.usuario.urlFoto>
+        </ion-thumbnail>
+      </ion-button>
+    </div>
+    <div class="div-datos">
+      <ion-item lines="none" class="item-label">
+        <ion-label class="lbl-nombre">{{this.usuario.nombre}}</ion-label>
+      </ion-item>
+      <ion-card-header>
+        <ion-card-subtitle>{{this.usuario.direccion}}</ion-card-subtitle>
+        <ion-card-title style="position: relative;
+        margin-left:12%; margin-top:0% ">Servicios</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content style="padding: 0%;">
+
+      </ion-card-content>
+    </div>
+  </div>
+</ion-content>

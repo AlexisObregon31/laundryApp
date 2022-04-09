@@ -38,7 +38,7 @@ export class AppComponent {
     private loading: LoadingController) {
   }
 
-  async validarUsuario() {
+  async validarUsuario(paginaDestino) {
 
     const load = await this.loading.create({
       spinner: 'dots',
@@ -49,14 +49,15 @@ export class AppComponent {
       console.log("Result user" + user);
       if (user == null) {
         //alert
-        this.navCtrl.navigateForward('/registro');
+        this.navCtrl.navigateForward('/tipos-registro');
       } else {
         if (user.emailVerified == true) {
-          this.navCtrl.navigateForward('/servicios');
-          console.log("Redirigiendo a Servicios, Resp: " + user.emailVerified);
-          //this.dirigirPage = true;
-          //console.log('Email verificado en el app.ts' + this.dirigirPage);
-        } else this.navCtrl.navigateForward('/validar-usuario');
+          if (paginaDestino == 'perfil')
+            this.navCtrl.navigateForward('/editar-perfil');
+          else
+            this.navCtrl.navigateForward('/servicios');
+        } else
+          this.navCtrl.navigateForward('/validar-usuario');
       }
     });
 

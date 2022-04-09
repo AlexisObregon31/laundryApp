@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar style="height: auto;">
+    <ion-avatar class="iconLaundry">
+      <img src="assets/icon/iconLaundrySinNombre.png">
+    </ion-avatar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="azulneon"></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="azulneon">Regístrate</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <ion-label class="mensaje" style="margin-top: 5em;">¿ Deseas registrarte como ?</ion-label>
+    <div class="div-boton">
+      <ion-button color="azulneon" id="btn-usuario" class="boton-azul" (click)="irAlRegistro('cliente')" type="reset">
+        Usuario
+      </ion-button>
+    </div>
+    <ion-label class="mensaje" style="margin-top: 1em; margin-bottom: 1em;">o</ion-label>
+    <div class="div-boton">
+      <ion-button color="verde-neon" id="btn-empresa" class="boton-azul" (click)="irAlRegistro('empresa')" type="reset">
+        Lavandería
+      </ion-button>
+    </div>
+  </div>
+</ion-content>
