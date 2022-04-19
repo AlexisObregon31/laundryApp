@@ -1,12 +1,16 @@
-ion-header {
+.head {
+  background-color: #000000;
+}
+
+/*ion-header {
   --ion-background-color: #000000;
   height: 5em;
-}
+}*/
 
 .btn-back {
   text-align: left;
   position: relative;
-  top: 3.5em;
+  top: 2em;
   left: 0%;
   border-radius: 70%;
 }
@@ -20,33 +24,50 @@ ion-title {
   color: rgb(218, 214, 210);
   position: relative;
   text-align: center;
-  top: 3em;
+  top: 0%;
+  height: auto;
+  margin-bottom: 1em;
 }
 
 .contenedorCentral {
   --ion-background-color: #000000;
   position: relative;
   width: 100%;
-  height: 100%;
+  height: auto;
 }
 
 .divFoto {
   position: relative;
-  align-content: center;
+  //align-items: center;
   top: 4em;
+  //text-align: center;
+  //background: url(´usuario.urlFoto´);
+  height: 100%;
+  max-width: 100%;
   text-align: center;
+  display: block;
+  align-items: center;
+  background-size: cover;
+  background-position: center center;
+  margin: 0 auto;
+}
+
+.foto {
+  width: auto;
 }
 
 .item {
   position: relative;
-  top: 10em;
+  margin-top: 2em;
+  height: 6em;
 }
 
 .btn-eliminar {
-  width: 9em;
-  height: 3.5em;
+  width: 9.1em;
+  height: 3em;
   position: absolute;
   top: 0%;
+  margin: 1em;
   left: 0%;
   color: #aaaaaa;
   background-color: #272727;
@@ -54,11 +75,12 @@ ion-title {
 }
 
 .btn-editar {
-  width: 9em;
-  height: 3.5em;
+  width: 9.1em;
+  height: 3em;
   position: absolute;
   top: 0%;
-  right: 1em;
+  right: 5%;
+  margin: 1em;
   color: #aaaaaa;
   background-color: #272727;
   border-radius: 1em;

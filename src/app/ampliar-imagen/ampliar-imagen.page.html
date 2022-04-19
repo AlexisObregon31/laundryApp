@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="head">
   <ion-button class="btn-back" color="none" routerLink="/editar-perfil" routerDirection="forward">
     <!--class="btn-back"-->
     <ion-icon name="arrow-back-circle-outline"></ion-icon>
@@ -7,9 +7,10 @@
 </ion-header>
 
 <ion-content class="contenedorCentral">
-  <div>
-    <div class="divFoto">
-      <img [src]="usuario.urlFoto">
+  <div style="width: 100%; height: auto; margin-button: 0.5em">
+    <div [style]=this.styleDivFoto>
+      <!--El div tiene como relleno la imagen-->
+      <!--<img class="foto" [style]=this.heightScreen [src]="usuario.urlFoto">-->
     </div>
   </div>
   <ion-item class="item">

@@ -34,9 +34,9 @@
     </ion-card-header>
 
     <ion-card-content class="card-content">
-      <ion-item lines="none">
+      <ion-item class="item" lines="none">
         <ion-icon class="icons" name="mail"></ion-icon>
-        <ion-input class="inpEmail" readonly="true">{{usuario.email}}</ion-input>
+        <ion-label class="inpEmail">{{usuario.email}}</ion-label>
       </ion-item>
       <ion-item lines="none">
         <ion-icon name="call"></ion-icon>
@@ -47,14 +47,9 @@
         <ion-input [readonly]="this.readOnly" value={{usuario.ci_ruc}} [(ngModel)]="usuario.ci_ruc">&nbsp;</ion-input>
       </ion-item>
       <div class="div-boton">
-        <ion-button color="azulneon" (click)="logout()">Cerrar Sesión
+        <ion-button class="btn-logout" color="azulneon" (click)="logout()">Cerrar Sesión
         </ion-button>
       </div>
-
-      <!--<div class="div-boton">
-        <ion-button color="azulneon" id="btn-registrar" class="boton-azul" (click)="signup()" type="reset">Registrar
-        </ion-button>
-      </div>-->
 
     </ion-card-content>
   </ion-card>

@@ -67,15 +67,12 @@ card-subtitulo {
   top: 0%;
 }
 
-#logout {
-  text-align: center;
-  position: relative;
-  background-position: center center;
-  left: 3em;
+.btn-logout {
+  margin: 2em;
 }
 
 .card-content {
-  padding: 0%;
+  margin: 0%;
 }
 
 .icons {
@@ -83,12 +80,12 @@ card-subtitulo {
   left: 0%;
 }
 
-.inpEmail {
+.item {
+  align-items: center;
   text-align: center;
   background-position: center center;
-  left: 2em;
-
 }
+
 
 ion-item {
   --ion-item-background: #eeeeee;
@@ -101,13 +98,11 @@ ion-item {
   border-radius: 5px;
   height: 2.6em;
   --min-height: 2.6em;
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
 }
 
 ion-label {
   text-align: center;
-  //padding: 0%;
-  //margin: 0%;
 }
 
 .btn-perfil {

@@ -92,9 +92,11 @@ export class RegistroPage implements OnInit, OnDestroy {
   async crearToast(message: string) {
     const toast = await this.toastCont.create({
       //header: mensage,
+      position: "top",
       message,
       color: 'warning',
       duration: 3000,
+      cssClass: "ion-toast",
       //message: 'Click to Close',
       //position: posicion,
       buttons: [

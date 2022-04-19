@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { LoadingController } from '@ionic/angular';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Usuario } from '../interfaces/usuario';
@@ -22,7 +22,10 @@ export interface imageData {
   templateUrl: './ampliar-imagen.page.html',
   styleUrls: ['./ampliar-imagen.page.scss'],
 })
+
 export class AmpliarImagenPage implements OnInit {
+
+  //@ViewChild('foto') foto;
 
   fileName: string;
   fileSize: string;
@@ -39,6 +42,9 @@ export class AmpliarImagenPage implements OnInit {
   nombre;
   idUser;
   usuario: Usuario;
+  //styleDocument = document.documentElement.style;
+  styleDivFoto;
+  //foto = document.documentElement.style.
 
   constructor(private database: AngularFirestore,
     private storage: AngularFireStorage,
@@ -54,6 +60,11 @@ export class AmpliarImagenPage implements OnInit {
     this.usuario = this.modelUsuario.getUsuario();
     this.idUser = this.activedRoute.snapshot.params.id;
     console.log(this.idUser + " - " + this.usuario.urlFoto + "-" + this.usuario.nombre);
+    this.styleDivFoto = "height: " + (screen.height - 200) + "px; " +
+      "background: url('" + this.usuario.urlFoto + "'); max-width: 100 %; display: block; align-items: center; " +
+      " background-size: cover; background-position: center center; margin: 0 auto; top: 4.5em;";
+    console.log("Tamaño de largo " + this.styleDivFoto);
+    //this.foto.setProperty("max-height", this.heightScreen);
   }
 
   ngOnInit() {
@@ -62,8 +73,10 @@ export class AmpliarImagenPage implements OnInit {
   async crearToast(mensage: string) {
     const toast = await this.toastCont.create({
       //header: mensage,
-      color: 'dark',
+      position: "top",
+      color: 'warning',
       duration: 2000,
+      cssClass: "ion-toast",
       //message: 'Click to Close',
       //position: 'middle',
       buttons: [

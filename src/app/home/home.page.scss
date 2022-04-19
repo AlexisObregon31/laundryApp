@@ -15,8 +15,8 @@
   margin: 0 auto;
   display: block;
   //transition: all 1s;
-  opacity: 0.4;
-  filter: alpha(opacity=40);
+  //opacity: 0.4;
+  //filter: alpha(opacity=40);
 }
 
 div {
@@ -42,7 +42,7 @@ div {
   position: relative;
   left: 0em;
   top: 45%;
-  width: 10em;
+  width: 11em;
   height: 6em;
   border-radius: 15%;
   background-position: center center;
@@ -59,7 +59,7 @@ div {
   margin: 0 auto;
   left: 0em;
   top: 25%;
-  color: rgb(0, 42, 156);
+  color: #01295e;
   font-size: 40px;
   font-weight: bold;
 }

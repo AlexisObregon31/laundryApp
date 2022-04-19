@@ -27,8 +27,8 @@
 
 .iconLaundry {
   position: absolute;
-  right: 0.5em;
-  top: 0%;
+  right: 0.8em;
+  top: 7%;
   width: 3.5em;
   height: 3.5em;
 }
@@ -67,11 +67,10 @@
   background-color: #415989;
 }
 
-/*::-webkit-scrollbar,
-*::-webkit-scrollbar {
-  display: none;
-  overflow: hidden;
-}*/
+.ion-toast {
+  top: 3em;
+  font-size: large;
+}
 
 .ion-alert {
   //color-scheme: rgba(0, 195, 255, 0.664);
