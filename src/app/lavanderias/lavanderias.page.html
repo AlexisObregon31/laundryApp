@@ -55,20 +55,21 @@
 </ion-content>-->
 
 <ion-content>
-  <ion-list *ngFor="let listLavanderias of arrayLavanderias">
-    <ion-item button class="btn-item" (click)="verLavanderia(listLavanderias.data)">
-      <div class="div">
-        <ion-thumbnail class="foto">
-          <img style="border-radius: 0.5em;" [src]=listLavanderias.data.urlFoto>
-        </ion-thumbnail>
-      </div>
-      <ion-label class="lbl-nombre">{{ listLavanderias.data.nombre }}</ion-label>
-      <ion-label class="lbl-direccion">
-        {{ listLavanderias.data.direccion }}
-      </ion-label>
-    </ion-item>
-  </ion-list>
-
+  <div class="scroll">
+    <ion-list *ngFor="let listLavanderias of arrayLavanderias">
+      <ion-item button class="btn-item" (click)="verLavanderia(listLavanderias.data)">
+        <div class="div">
+          <ion-thumbnail class="foto">
+            <img style="border-radius: 0.5em;" [src]=listLavanderias.data.urlFoto>
+          </ion-thumbnail>
+        </div>
+        <ion-label class="lbl-nombre">{{ listLavanderias.data.nombre }}</ion-label>
+        <ion-label class="lbl-direccion">
+          {{ listLavanderias.data.direccion }}
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
 
 <!--routerLink="/perfil-empresa" routerDirection="forward"-->

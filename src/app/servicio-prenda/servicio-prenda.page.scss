@@ -1,5 +1,5 @@
 .title {
-  --background: #3880ff;
+  //--background: #3880ff;
   position: absolute;
   top: 1em;
   left: 1.5em;
@@ -15,32 +15,6 @@
   top: 0em;
 }
 
-.foto-empresa {
-  margin-top: 1em;
-  --ion-background-color: transparent !important;
-  box-shadow: none;
-  text-align: center;
-  height: 13em;
-  width: 14em;
-  margin: auto;
-  border: 4px solid #6e600a;
-  border-radius: 10%;
-}
-
-.foto {
-  border-radius: 10%;
-}
-
-.btn-perfil {
-  position: relative;
-  width: auto;
-  height: 100%;
-  border-radius: 50%;
-  outline: none;
-  border: none;
-  display: block;
-  margin: auto;
-}
 
 .lbl-nombre {
   position: relative;
@@ -49,6 +23,15 @@
   left: 2em;
 }
 
-.div-datos {
+.check {
+  border-radius: 2%;
+  border-color: #063852;
+}
+
+.inp-canti {
   position: relative;
+  width: 23px;
+  height: 23px;
+  border: 2px solid #063852;
+  text-align: center;
 }

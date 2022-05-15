@@ -46,13 +46,15 @@ export class LoginPage implements OnInit {
     console.log("Logueando usuario...");
     this.fireauth.signInWithEmailAndPassword(this.email, this.password).then(res => {
       if (res.user) {
+        this.consultarDatosUsuario("usuarios", "uid", "==", res.user.uid);
         localStorage.setItem("userUid", res.user.uid);
-        localStorage.setItem("tipoUsuario", "cliente");
+        localStorage.setItem("nombre", this.usuario.nombre);
+        localStorage.setItem("tipoUsuario", this.usuario.tipo);
         localStorage.setItem("emailUser", this.email);
-        console.log("Logueado exitosamente: " + this.email);
-        this.consultarDatosUsuario("usuarios", "uid", "==", localStorage.getItem("userUid"));
-        this.headerAlert = "Bienvenido !"
-        this.subHeader = this.email;
+        console.log("Logueado exitosamente: " + this.usuario.nombre);
+        //this.consultarDatosUsuario("usuarios", "uid", "==", localStorage.getItem("userUid"));
+        this.headerAlert = "Bienvenido";
+        this.subHeader = this.usuario.nombre;
         this.avisoLogin();
         if (res.user.emailVerified)
           this.navCtrl.navigateForward('/lavanderias');
@@ -78,8 +80,9 @@ export class LoginPage implements OnInit {
     this.firebaseService.consultar(coleccion, campo, condicion, valor).subscribe((resConsultaUser) => {
       this.usuario = {} as Usuario;
       resConsultaUser.forEach((datosUser: any) => {
-        this.usuario.nombre = datosUser.payload.doc.data().nombre;
-        localStorage.setItem("nombre", this.usuario.nombre);
+        //this.usuario.nombre = datosUser.payload.doc.data().nombre;
+        //localStorage.setItem("nombre", this.usuario.nombre);
+        this.usuario = datosUser.payload.doc.data();
       })
     });
   }

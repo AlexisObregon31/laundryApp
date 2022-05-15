@@ -50,11 +50,18 @@ ion-menu-button {
   margin: auto;
 }
 
+.card-sub {
+  position: relative;
+  margin-left: 12%;
+  margin-top: 4%;
+  font-size: 4em;
+}
+
 .lbl-nombre {
   position: relative;
   margin-top: 2%;
   font-size: 1.3em;
-  margin-left: 3%;
+  margin-left: 8%;
   margin-bottom: 0%;
 }
 
@@ -73,4 +80,39 @@ ion-menu-button {
 
 .item-label {
   height: auto;
+}
+
+.check {
+  --border-radius: 45%;
+  --background-checked: rgb(126, 235, 1);
+  --border-color-checked: rgb(126, 235, 1);
+  position: relative;
+  left: 87%;
+  margin-bottom: 0%;
+  margin-top: 3px;
+}
+
+.card-header {
+  margin: 0.1em;
+  align-items: center;
+  text-align: center;
+  background-position: center center;
+}
+
+.avatar-prenda {
+  position: relative;
+  //left: 1em;
+  align-items: center;
+  text-align: center;
+  height: auto;
+  width: 8em;
+  margin: auto;
+  //border: 4px solid #6e600a;
+  //tratar de centrar mejor y listo
+}
+
+.btn-servicio {
+  margin-bottom: 2em;
+  position: relative;
+  overflow: hidden;
 }

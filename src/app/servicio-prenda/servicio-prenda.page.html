@@ -6,26 +6,31 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title class="title" color="primary"></ion-title>
+    <ion-title class="title" color="azulneon">¿Qué deseas lavar?</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="cabecera">
-    <ion-button color="none" class="btn-perfil">
-      <ion-thumbnail class="foto-empresa">
-        <img class="foto" [src]=this.usuario.urlFoto>
-      </ion-thumbnail>
-    </ion-button>
-  </div>
-  <div class="div-datos">
-    <ion-label class="lbl-nombre">{{this.usuario.nombre}}</ion-label>
+  <div class="scroll">
+    <ion-label>{{this.lavanderia.nombre}}</ion-label>
+    <ion-list>
+      <!--*ngFor="let listPrendas of prendas; let i = index"-->
+      <ion-item style="align-items: center;">
+        <ion-label style="position: relative; margin-left: 1em; height:auto;">
+          <!--{{listPrendas.data.prenda_nombre}}-->
+        </ion-label>
+        <!--<ion-checkbox ng-change="asignarCantidad(true)" class="check" color="verde-neon" slot="start"></ion-checkbox>-->
+        <ion-button color="medium" style="margin-left: 2em; border-radius: 2%" (click)="alertPrendas()">
+          <ion-icon name="remove-outline"></ion-icon>
+        </ion-button>
+        <input class="inp-canti">
+        <!--[(ngModel)]="this.cantidadPrenda">-->
+        <ion-button color="medium" style="position: relative; border-radius: 2%;margin-right:1em;">
+          <ion-icon name="add-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+    <ion-toolbar color="medium"></ion-toolbar>
+
   </div>
 </ion-content>
-
-<!--<ion-button color="none" class="btn-perfil" (click)="goToAmpliarImagen()">
-  <ion-avatar class="avatar-perfil">
-    <!--<img src="../../assets/icon/imagePlaceholder.jpg">
-    <img [src]="usuario.urlFoto">
-  </ion-avatar>
-</ion-button>-->

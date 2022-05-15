@@ -23,15 +23,37 @@
       <ion-item lines="none" class="item-label">
         <ion-label class="lbl-nombre">{{this.usuario.nombre}}</ion-label>
       </ion-item>
+
       <ion-card-header>
-        <ion-card-subtitle>{{this.usuario.direccion}}</ion-card-subtitle>
-        <ion-card-title style="position: relative;
-        margin-left:12%; margin-top:0% ">Servicios</ion-card-title>
+        <ion-card-subtitle style="margin-left: 2.5%;">{{this.usuario.direccion}}</ion-card-subtitle>
+        <ion-title style="font-size: medium; left: 9em; margin-bottom: 0%">¿Qué deseas lavar?
+        </ion-title>
       </ion-card-header>
 
-      <ion-card-content style="padding: 0%;">
-
-      </ion-card-content>
+      <div>
+        <ion-grid>
+          <ion-row>
+            <ion-col *ngFor="let listPrendas of array_usuario_prenda">
+              <ion-card style="margin-top: 0%;">
+                <ion-checkbox class="check" (ionChange)="onCheck($event, listPrendas.data, listPrendas.id)">
+                </ion-checkbox>
+                <ion-card-header class="card-header">
+                  <ion-card-title>{{ listPrendas.data.prenda_nombre }}</ion-card-title>
+                  <ion-card-subtitle style="margin-bottom: 4%;">{{ listPrendas.data.precio }} Gs</ion-card-subtitle>
+                  <ion-avatar class="avatar-prenda">
+                    <img class="img-avatar" [src]="listPrendas.data.urlFoto">
+                  </ion-avatar>
+                </ion-card-header>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+      <div class="div-boton">
+        <ion-button class="btn-servicio" color="azulneon" (click)="enviarDatos()">Solicitar Lavado
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-button>
+      </div>
     </div>
   </div>
 </ion-content>

@@ -7,17 +7,19 @@
 </ion-header>
 
 <ion-content class="contenedorCentral">
-  <div style="width: 100%; height: auto; margin-button: 0.5em">
-    <div [style]=this.styleDivFoto>
-      <!--El div tiene como relleno la imagen-->
-      <!--<img class="foto" [style]=this.heightScreen [src]="usuario.urlFoto">-->
+  <div class="scroll">
+    <div style="width: 100%; height: auto; margin-button: 0.5em">
+      <div [style]=this.styleDivFoto>
+        <!--El div tiene como relleno la imagen-->
+        <!--<img class="foto" [style]=this.heightScreen [src]="usuario.urlFoto">-->
+      </div>
     </div>
+    <ion-item class="item">
+      <ion-button color="none" class="btn-eliminar" (click)="eliminarFoto()">Eliminar Perfil</ion-button>
+      <ion-button color="none" class="btn-editar">Editar Perfil
+        <input class="file" type="file" (change)="subirImagenAlFirebase($event)" id="file-input"
+          accept="image/png, image/jpg">
+      </ion-button>
+    </ion-item>
   </div>
-  <ion-item class="item">
-    <ion-button color="none" class="btn-eliminar" (click)="eliminarFoto()">Eliminar Perfil</ion-button>
-    <ion-button color="none" class="btn-editar">Editar Perfil
-      <input class="file" type="file" (change)="subirImagenAlFirebase($event)" id="file-input"
-        accept="image/png, image/jpg">
-    </ion-button>
-  </ion-item>
 </ion-content>
