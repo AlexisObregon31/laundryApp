@@ -13,19 +13,21 @@
 <ion-content>
   <div class="scroll">
     <ion-label>{{this.lavanderia.nombre}}</ion-label>
-    <ion-list>
+    <ion-list *ngFor="let listPrendas of listaPrenda; let i = index">
       <!--*ngFor="let listPrendas of prendas; let i = index"-->
       <ion-item style="align-items: center;">
         <ion-label style="position: relative; margin-left: 1em; height:auto;">
-          <!--{{listPrendas.data.prenda_nombre}}-->
+          {{listPrendas.data.prenda_nombre}}
         </ion-label>
         <!--<ion-checkbox ng-change="asignarCantidad(true)" class="check" color="verde-neon" slot="start"></ion-checkbox>-->
-        <ion-button color="medium" style="margin-left: 2em; border-radius: 2%" (click)="alertPrendas()">
+        <ion-button color="medium" style="margin-left: 2em; border-radius: 2%"
+          (click)="asignarCantidad('-',listPrendas.canti, i)">
           <ion-icon name="remove-outline"></ion-icon>
         </ion-button>
-        <input class="inp-canti">
+        <input class="inp-canti" [value]="listPrendas.canti">
         <!--[(ngModel)]="this.cantidadPrenda">-->
-        <ion-button color="medium" style="position: relative; border-radius: 2%;margin-right:1em;">
+        <ion-button color="medium" style="position: relative; border-radius: 2%;margin-right:1em;"
+          (click)="asignarCantidad('+',listPrendas.canti, i)">
           <ion-icon name="add-outline"></ion-icon>
         </ion-button>
       </ion-item>

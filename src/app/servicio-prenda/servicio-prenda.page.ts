@@ -1,10 +1,11 @@
+import { ModelPrendaSeleccionadaService } from './../modelos/model_prenda_seleccionada';
+import { LavanderiaPrendaPage } from './../lavanderia-prenda/lavanderia-prenda.page';
 import { FirebaseService } from './../services/firebase.service';
 import { usuario_prenda } from './../interfaces/usuario-prenda';
 import { ModelUsuarioService } from './../modelos/model_usuario';
 import { Usuario } from './../interfaces/usuario';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Injectable } from '@angular/core';
 import { IonList, AlertController } from '@ionic/angular';
-import { identifierModuleUrl } from '@angular/compiler';
 
 export interface itemCanti {
   item: number;
@@ -19,6 +20,10 @@ export interface inputAlert {
   checked: boolean;
 }
 
+@Injectable({
+  providedIn: 'root'
+})
+
 @Component({
   selector: 'app-servicio-prenda',
   templateUrl: './servicio-prenda.page.html',
@@ -26,81 +31,65 @@ export interface inputAlert {
 })
 export class ServicioPrendaPage implements OnInit {
 
-  @ViewChild('listaPrendas') listaPrendasRef: IonList;
-
   constructor(private model_usuario: ModelUsuarioService,
+    private modelListaSeleccionada: ModelPrendaSeleccionadaService,
     private firebaseService: FirebaseService,
     public alertController: AlertController) {
     this.traerDatosLavanderia();
-    //this.listarPrendas();
     this.cantidadPrenda = [];
-    //this.alertPrendas();
+    this.traerListaPrendas();
+    console.log(this.listaPrenda);
   }
 
   ngOnInit() {
   }
 
-  cantidadPrenda: any = [{ data: {} as itemCanti }];
-  idInput: number = 0;
-  arrayInput: any = [{
-    id: '',
-    name: '',
-    type: '',
-    value: '',
-    checked: ''
-  }];
-  itemPrenda: itemCanti;
+  cantidadPrenda: any = [{ index: '', canti: '', id: '' }];
+  index = 0;
+  //idInput: number = 0;
+  //itemPrenda: itemCanti;
   lavanderia: Usuario;
   prendas: any = [{
     id: "",
     data: {} as usuario_prenda,
   }];
+  listaPrenda: any = [];
+  swingreso;
 
   traerDatosLavanderia() {
     this.lavanderia as Usuario;
     this.lavanderia = this.model_usuario.getUsuario();
   }
 
-  listarPrendas() {
-    console.log("Listando Prendas de " + this.lavanderia.nombre);
-    this.firebaseService.consultar("usuario_prenda", "id_usuario", "==", this.lavanderia.uid).subscribe((resConsulta) => {//se busca las prendas que ofrece dicho usuario lavandería
-      this.prendas = [];
-      resConsulta.forEach((datos: any) => {
-        this.prendas.push({
-          id: datos.payload.doc.id,
-          data: datos.payload.doc.data()
-
-        });
-        //console.log(this.prendas.data.prenda_nombre);
-      })
-    });
-    console.log(this.prendas.data);
-    this.prepararAlertPrendas();
+  traerListaPrendas() {
+    this.listaPrenda = [];
+    this.listaPrenda = this.modelListaSeleccionada.getListaSeleccionada();
   }
 
-  prepararAlertPrendas() {
-    this.arrayInput = [];
-    this.prendas.forEach((prenda: any) => {
-      console.log(prenda.data);
-      this.idInput += 1;
-      console.log(this.arrayInput);
-      this.arrayInput.push({
-        id: this.idInput,
-        name: 'ch' + this.idInput,
-        type: 'checkbox',
-        //label: 'Checkbox 1',
-        value: prenda.data.prenda_nombre, //valor
-        checked: false
-      });
-    });
-    this.alertPrendas();
+  asignarCantidad(signo, cantiAsig, index) {
+    console.log("Index: " + index);
+    if (signo == '+') {
+      cantiAsig = cantiAsig + 1;
+    } else {
+      if (cantiAsig > 1)
+        cantiAsig = cantiAsig - 1;
+    }
+    this.listaPrenda[index] = {
+      id: this.listaPrenda[index].id,
+      data: this.listaPrenda[index].data,
+      check: this.listaPrenda[index].check,
+      canti: cantiAsig
+    }
+    console.log(this.listaPrenda[index]);
   }
+}
 
-  async alertPrendas() {
+
+/*async alertPrendas() {
     const alert = await this.alertController.create({
       cssClass: 'ion-alert',
       header: 'Seleccione las prendas',
-      inputs: this.arrayInput/*[ // asignar propiedades del input
+      inputs: this.arrayInput[
         {
           name: 'checkbox1',
           type: 'checkbox',
@@ -109,19 +98,13 @@ export class ServicioPrendaPage implements OnInit {
           checked: true
         },
         {
-          name: 'checkbox2',
-          type: 'checkbox',
-          label: 'Checkbox 2',
-          value: 'value2'
-        },
-        {
           name: 'checkbox3',
           type: 'checkbox',
           label: 'Checkbox 3',
           value: 'value3'
         }
-      ]*/ ,
-      buttons: [{
+      ] ,
+      /*buttons: [{
         text: 'Cancelar',
         role: 'cancel',
         cssClass: 'secondary',
@@ -136,24 +119,4 @@ export class ServicioPrendaPage implements OnInit {
       }]
     });
     await alert.present();
-  }
-
-
-  asignarCantidad(item: number, canti: number, signo: any) {
-
-    if (signo == '+')
-      canti = + 1;
-    else {
-      if (canti > 0)
-        canti = -1;
-    }
-
-    this.itemPrenda as itemCanti;
-    this.itemPrenda.item = item;
-    this.itemPrenda.canti = canti;
-    this.cantidadPrenda.push(
-      this.cantidadPrenda.data = this.itemPrenda
-    );
-
-  }
-}
+  }*/

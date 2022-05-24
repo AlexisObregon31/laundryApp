@@ -1,11 +1,16 @@
+import { ModelPrendaSeleccionadaService } from './../modelos/model_prenda_seleccionada';
+import { ServicioPrendaPage } from './../servicio-prenda/servicio-prenda.page';
 import { Router } from '@angular/router';
 import { FirebaseService } from './../services/firebase.service';
 import { ModelUsuarioPrendaService } from './../modelos/model_usuario_prenda';
 import { usuario_prenda } from './../interfaces/usuario-prenda';
 import { ModelUsuarioService } from './../modelos/model_usuario';
 import { Usuario } from './../interfaces/usuario';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 
+@Injectable({
+  providedIn: 'root'
+})
 
 @Component({
   selector: 'app-lavanderia-prenda',
@@ -15,7 +20,7 @@ import { Component, OnInit } from '@angular/core';
 export class LavanderiaPrendaPage implements OnInit {
 
   constructor(private model_usuario: ModelUsuarioService,
-    private model_usuario_prenda: ModelUsuarioPrendaService,
+    private model_prenda_seleccionada: ModelPrendaSeleccionadaService,
     private firebaseService: FirebaseService,
     private router: Router) {
     this.traerDatosUsuario();
@@ -25,13 +30,15 @@ export class LavanderiaPrendaPage implements OnInit {
   ngOnInit() {
   }
 
-  listaSeleccionada: any = [{ data: {} as usuario_prenda, check: '' }];
+  swP = 0;
+  listaSeleccionada: any = [{ data: {} as usuario_prenda, check: '', canti: 1 }];
   usuario: Usuario;
   usuario_prenda: usuario_prenda;
   array_usuario_prenda: any = [{
     id: "",
     data: {} as usuario_prenda,
   }];
+
 
 
   traerDatosUsuario() {
@@ -46,7 +53,6 @@ export class LavanderiaPrendaPage implements OnInit {
 
   listarPrendas() {
     console.log("Listando Lavanderías");
-    // tslint:disable-next-line: no-unused-expression
     this.firebaseService.consultar("usuario_prenda", "id_usuario", "==", this.usuario.uid).subscribe((resConsulta) => {//se busca las prendas que ofrece dicho usuario lavandería
       this.array_usuario_prenda = [];
       resConsulta.forEach((datos: any) => {
@@ -56,20 +62,26 @@ export class LavanderiaPrendaPage implements OnInit {
         });
       })
     }).unsubscribe;
-    console.log(this.array_usuario_prenda.data);
+    console.log(`Listando prendas: `, this.array_usuario_prenda);
   }
 
   enviarDatos() {//se envian los datos de la lavavandería seleccionada
     this.model_usuario.setUsuario(this.usuario);
+    if (this.swP == 0) {
+      this.listaSeleccionada.shift();
+      this.swP = 1;
+    }
+    this.model_prenda_seleccionada.setListaSeleccionada(this.listaSeleccionada);
     this.router.navigate(['/servicio-prenda']);
   }
 
   onCheck(event: any, chdata: any, chId: any) {
     if (event.detail.checked) {
       this.listaSeleccionada.push({
-        data: chdata,
         id: chId,
-        check: 'true'
+        data: chdata,
+        check: 'true',
+        canti: 1
       });
       console.log(`Lista seleccionada: `, this.listaSeleccionada);
 
