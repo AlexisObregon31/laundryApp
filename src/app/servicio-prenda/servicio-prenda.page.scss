@@ -15,17 +15,25 @@
   top: 0em;
 }
 
-
 .lbl-nombre {
   position: relative;
-  top: 2%;
-  font-size: large;
-  left: 2em;
+  margin-left: 0.5em;
+  height: auto;
+  width: auto
 }
 
-.check {
-  border-radius: 2%;
-  border-color: #063852;
+.lbl-total {
+  position: relative;
+  margin-left: 0.5em;
+  height: auto;
+  width: auto;
+  color: #1b3f52;
+}
+
+.btn-restar {
+  position: relative;
+  margin-left: 1em;
+  border-radius: 2%
 }
 
 .inp-canti {
@@ -34,4 +42,24 @@
   height: 23px;
   border: 2px solid #063852;
   text-align: center;
+}
+
+.btn-sumar {
+  position: relative;
+  border-radius: 2%;
+  margin-right: 1em;
+}
+
+.btn-quitar {
+  background-color: "none";
+  background: none;
+  position: relative;
+  margin-right: 1em;
+  border: none;
+}
+
+.icon-quitar {
+  color: rgb(51, 50, 50);
+  width: 30px;
+  border: none;
 }

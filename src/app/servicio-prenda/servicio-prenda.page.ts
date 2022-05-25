@@ -36,16 +36,18 @@ export class ServicioPrendaPage implements OnInit {
     private firebaseService: FirebaseService,
     public alertController: AlertController) {
     this.traerDatosLavanderia();
-    this.cantidadPrenda = [];
+    //this.cantidadPrenda = [];
     this.traerListaPrendas();
+    this.calcularTotal();
     console.log(this.listaPrenda);
   }
 
   ngOnInit() {
   }
 
-  cantidadPrenda: any = [{ index: '', canti: '', id: '' }];
+  //cantidadPrenda: any = [{ index: '', canti: '', id: '' , total: ''}];
   index = 0;
+  totalGeneral: number = 0;
   //idInput: number = 0;
   //itemPrenda: itemCanti;
   lavanderia: Usuario;
@@ -54,7 +56,7 @@ export class ServicioPrendaPage implements OnInit {
     data: {} as usuario_prenda,
   }];
   listaPrenda: any = [];
-  swingreso;
+  swTotal = 0;
 
   traerDatosLavanderia() {
     this.lavanderia as Usuario;
@@ -78,11 +80,35 @@ export class ServicioPrendaPage implements OnInit {
       id: this.listaPrenda[index].id,
       data: this.listaPrenda[index].data,
       check: this.listaPrenda[index].check,
-      canti: cantiAsig
+      canti: cantiAsig,
+      total: this.listaPrenda[index].data.precio * cantiAsig
     }
     console.log(this.listaPrenda[index]);
+    this.calcularTotal();
   }
-}
+
+  quitarPrenda(idPrenda) {
+    console.log(idPrenda);
+    this.borrarElementoDeArray(this.listaPrenda, idPrenda);
+    this.calcularTotal();
+    console.log(this.listaPrenda);
+  }
+
+  borrarElementoDeArray(array, idPrenda) {
+    this.listaPrenda = array.filter((elemento) => {
+      return elemento.id !== idPrenda;
+    })
+  }
+
+  calcularTotal() {
+    this.totalGeneral = 0;
+    this.listaPrenda.forEach(element => {
+      this.totalGeneral = this.totalGeneral + element.total;
+    });
+  }
+
+}//final
+
 
 
 /*async alertPrendas() {

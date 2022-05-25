@@ -16,23 +16,29 @@
     <ion-list *ngFor="let listPrendas of listaPrenda; let i = index">
       <!--*ngFor="let listPrendas of prendas; let i = index"-->
       <ion-item style="align-items: center;">
-        <ion-label style="position: relative; margin-left: 1em; height:auto;">
+        <ion-label class="lbl-nombre">
           {{listPrendas.data.prenda_nombre}}
         </ion-label>
-        <!--<ion-checkbox ng-change="asignarCantidad(true)" class="check" color="verde-neon" slot="start"></ion-checkbox>-->
-        <ion-button color="medium" style="margin-left: 2em; border-radius: 2%"
-          (click)="asignarCantidad('-',listPrendas.canti, i)">
+        <ion-label class="lbl-total">
+          {{listPrendas.total}} Gs
+        </ion-label>
+        <ion-button color="medium" class="btn-restar" (click)="asignarCantidad('-',listPrendas.canti, i)">
           <ion-icon name="remove-outline"></ion-icon>
         </ion-button>
         <input class="inp-canti" [value]="listPrendas.canti">
         <!--[(ngModel)]="this.cantidadPrenda">-->
-        <ion-button color="medium" style="position: relative; border-radius: 2%;margin-right:1em;"
-          (click)="asignarCantidad('+',listPrendas.canti, i)">
+        <ion-button color="medium" class="btn-sumar" (click)="asignarCantidad('+',listPrendas.canti, i)">
           <ion-icon name="add-outline"></ion-icon>
         </ion-button>
+        <button fill="outline" class="btn-quitar" color="none" (click)="quitarPrenda(listPrendas.id)">
+          <ion-icon class="icon-quitar" size="large" name="trash"></ion-icon>
+        </button>
       </ion-item>
     </ion-list>
-    <ion-toolbar color="medium"></ion-toolbar>
-
   </div>
 </ion-content>
+<ion-footer>
+  <ion-toolbar class="tool-pie" color="verde-neon">
+    <ion-label>Total: {{totalGeneral}}</ion-label>
+  </ion-toolbar>
+</ion-footer>

@@ -31,7 +31,7 @@ export class LavanderiaPrendaPage implements OnInit {
   }
 
   swP = 0;
-  listaSeleccionada: any = [{ data: {} as usuario_prenda, check: '', canti: 1 }];
+  listaSeleccionada: any = [{ data: {} as usuario_prenda, check: '', canti: 1, total: 0 }];
   usuario: Usuario;
   usuario_prenda: usuario_prenda;
   array_usuario_prenda: any = [{
@@ -81,7 +81,8 @@ export class LavanderiaPrendaPage implements OnInit {
         id: chId,
         data: chdata,
         check: 'true',
-        canti: 1
+        canti: 1,
+        total: chdata.precio
       });
       console.log(`Lista seleccionada: `, this.listaSeleccionada);
 
