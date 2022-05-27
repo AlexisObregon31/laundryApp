@@ -1,10 +1,12 @@
+import { Servicio } from './../interfaces/servicio';
 import { ModelServicioPrendaService } from './../modelos/model_servicio_prenda';
 import { FirebaseService } from './../services/firebase.service';
 import { usuario_prenda } from './../interfaces/usuario-prenda';
 import { ModelUsuarioService } from './../modelos/model_usuario';
 import { Usuario } from './../interfaces/usuario';
 import { Component, OnInit, ViewChild, Injectable } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
+import { getLocaleDateFormat, getLocaleDateTimeFormat } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +22,8 @@ export class ServicioPrendaPage implements OnInit {
   constructor(private model_usuario: ModelUsuarioService,
     private modelServicioPrendaService: ModelServicioPrendaService,
     private firebaseService: FirebaseService,
-    public alertController: AlertController) {
+    public alertController: AlertController,
+    private navCtrl: NavController) {
     this.traerDatosLavanderia();
     //this.cantidadPrenda = [];
     this.traerServicioPrenda();
@@ -40,6 +43,10 @@ export class ServicioPrendaPage implements OnInit {
   }];
   array_servicio_prenda: any = [];
   swTotal = 0;
+  servicio_cab: Servicio;
+  idServicio;
+  fecha: Date = new Date();
+  fechaString: string;
 
   traerDatosLavanderia() {
     this.lavanderia as Usuario;
@@ -96,9 +103,35 @@ export class ServicioPrendaPage implements OnInit {
     });
   }
 
-  guardarServicio() {
-
+  async guardarServicio() {
+    this.servicio_cab = {} as Servicio;
+    this.servicio_cab.estado = 'i';
+    this.fecha.toUTCString();
+    this.servicio_cab.fecha_hora = this.fecha;
+    this.servicio_cab.nombre_cliente = localStorage.getItem("nombre");
+    this.servicio_cab.nombre_empresa = this.lavanderia.nombre;
+    this.servicio_cab.total_general = this.totalGeneral;
+    this.servicio_cab.uid_usu_cliente = localStorage.getItem("userUid");
+    this.servicio_cab.uid_usu_empresa = this.lavanderia.uid;
+    this.fechaString = this.servicio_cab.fecha_hora.toString();
+    console.log(this.servicio_cab);
+    await this.firebaseService.insertar("servicios", this.servicio_cab).then((regInsert) => {
+      this.idServicio = regInsert.id;
+    }, (error) => {
+      console.log(error);
+    });
+    console.log(`Servicio insertado correctamente con ID: `, + this.idServicio);
+    this.navCtrl.navigateForward('/servicios');
   }
+
+  /*consultarIdServicio() {
+    this.firebaseService.consultar('servicios', 'idManual', "==", this.servicio_cab.idManual).subscribe((resConsultaServicio) => {
+      resConsultaServicio.forEach((datoServicio: any) => {
+        this.idServicio = datoServicio.payload.doc.id;
+        this.servicio_cab = datoServicio.payload.doc.data();
+      })
+    }).unsubscribe();
+  }*/
 
 }//final
 
