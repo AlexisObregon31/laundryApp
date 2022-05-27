@@ -1,3 +1,4 @@
+import { servicio_prenda } from './../interfaces/servicio-prenda';
 import { Servicio } from './../interfaces/servicio';
 import { ModelServicioPrendaService } from './../modelos/model_servicio_prenda';
 import { FirebaseService } from './../services/firebase.service';
@@ -41,7 +42,7 @@ export class ServicioPrendaPage implements OnInit {
     id: "",
     data: {} as usuario_prenda,
   }];
-  array_servicio_prenda: any = [];
+  array_servicio_prenda: any = [{} as servicio_prenda];
   swTotal = 0;
   servicio_cab: Servicio;
   idServicio;
@@ -54,7 +55,7 @@ export class ServicioPrendaPage implements OnInit {
   }
 
   traerServicioPrenda() {
-    this.array_servicio_prenda = [];
+    //this.array_servicio_prenda = [{} as servicio_prenda];
     this.array_servicio_prenda = this.modelServicioPrendaService.getListaSeleccionada();
   }
 
@@ -113,25 +114,30 @@ export class ServicioPrendaPage implements OnInit {
     this.servicio_cab.total_general = this.totalGeneral;
     this.servicio_cab.uid_usu_cliente = localStorage.getItem("userUid");
     this.servicio_cab.uid_usu_empresa = this.lavanderia.uid;
-    this.fechaString = this.servicio_cab.fecha_hora.toString();
-    console.log(this.servicio_cab);
-    await this.firebaseService.insertar("servicios", this.servicio_cab).then((regInsert) => {
+
+    await this.firebaseService.insertar("servicios", this.servicio_cab).then((regInsert) => {//Insertando Servicio Cabecera
       this.idServicio = regInsert.id;
     }, (error) => {
       console.log(error);
     });
+
+    this.insertarServicioPrenda();//Insertamos las prendas seleccionadas
+    this.servicio_cab = {} as Servicio;//Limpiamos datos
+  }
+
+  async insertarServicioPrenda() {
+    await this.array_servicio_prenda.forEach(item => {
+      item.id_servicio = this.idServicio;
+      this.firebaseService.insertar("servicio_prenda", item).then((regInsert) => {//Insertando Servicio Cabecera
+        console.log(`Item insertado con éxito` + regInsert.id);
+      }, (error) => {
+        console.log(error);
+      });
+    });
+    this.array_servicio_prenda = [];//Limpiamos datos
     console.log(`Servicio insertado correctamente con ID: `, + this.idServicio);
     this.navCtrl.navigateForward('/servicios');
   }
-
-  /*consultarIdServicio() {
-    this.firebaseService.consultar('servicios', 'idManual', "==", this.servicio_cab.idManual).subscribe((resConsultaServicio) => {
-      resConsultaServicio.forEach((datoServicio: any) => {
-        this.idServicio = datoServicio.payload.doc.id;
-        this.servicio_cab = datoServicio.payload.doc.data();
-      })
-    }).unsubscribe();
-  }*/
 
 }//final
 
