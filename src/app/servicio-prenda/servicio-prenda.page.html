@@ -13,24 +13,24 @@
 <ion-content>
   <div class="scroll">
     <ion-label>{{this.lavanderia.nombre}}</ion-label>
-    <ion-list *ngFor="let listPrendas of listaPrenda; let i = index">
+    <ion-list *ngFor="let listPrendas of array_servicio_prenda; let i = index">
       <!--*ngFor="let listPrendas of prendas; let i = index"-->
       <ion-item style="align-items: center;">
         <ion-label class="lbl-nombre">
-          {{listPrendas.data.prenda_nombre}}
+          {{listPrendas.prenda_nombre}}
         </ion-label>
         <ion-label class="lbl-total">
           {{listPrendas.total}} Gs
         </ion-label>
-        <ion-button color="medium" class="btn-restar" (click)="asignarCantidad('-',listPrendas.canti, i)">
+        <ion-button color="medium" class="btn-restar" (click)="asignarCantidad('-',listPrendas.cantidad, i)">
           <ion-icon name="remove-outline"></ion-icon>
         </ion-button>
-        <input class="inp-canti" [value]="listPrendas.canti">
+        <input class="inp-canti" [value]="listPrendas.cantidad">
         <!--[(ngModel)]="this.cantidadPrenda">-->
-        <ion-button color="medium" class="btn-sumar" (click)="asignarCantidad('+',listPrendas.canti, i)">
+        <ion-button color="medium" class="btn-sumar" (click)="asignarCantidad('+',listPrendas.cantidad, i)">
           <ion-icon name="add-outline"></ion-icon>
         </ion-button>
-        <button fill="outline" class="btn-quitar" color="none" (click)="quitarPrenda(listPrendas.id)">
+        <button fill="outline" class="btn-quitar" color="none" (click)="quitarPrenda(listPrendas.id_prenda)">
           <ion-icon class="icon-quitar" size="large" name="trash"></ion-icon>
         </button>
       </ion-item>
@@ -40,5 +40,7 @@
 <ion-footer>
   <ion-toolbar class="tool-pie" color="verde-neon">
     <ion-label>Total: {{totalGeneral}}</ion-label>
+    <ion-button class="btn-confirmar" (click)="guardarServicio()">Confirmar</ion-button>
+    <ion-button>Cancelar</ion-button>
   </ion-toolbar>
 </ion-footer>

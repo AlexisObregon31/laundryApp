@@ -1,4 +1,5 @@
-import { ModelPrendaSeleccionadaService } from './../modelos/model_prenda_seleccionada';
+import { servicio_prenda } from './../interfaces/servicio-prenda';
+import { ModelServicioPrendaService } from '../modelos/model_servicio_prenda';
 import { ServicioPrendaPage } from './../servicio-prenda/servicio-prenda.page';
 import { Router } from '@angular/router';
 import { FirebaseService } from './../services/firebase.service';
@@ -20,7 +21,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 export class LavanderiaPrendaPage implements OnInit {
 
   constructor(private model_usuario: ModelUsuarioService,
-    private model_prenda_seleccionada: ModelPrendaSeleccionadaService,
+    private model_servicio_prenda: ModelServicioPrendaService,
     private firebaseService: FirebaseService,
     private router: Router) {
     this.traerDatosUsuario();
@@ -31,7 +32,8 @@ export class LavanderiaPrendaPage implements OnInit {
   }
 
   swP = 0;
-  listaSeleccionada: any = [{ data: {} as usuario_prenda, check: '', canti: 1, total: 0 }];
+  servicio_prenda: any = [{ data: {} as servicio_prenda }];
+  //listaSeleccionada: any = [{ data: {} as usuario_prenda, check: '', canti: 1, total: 0 }];
   usuario: Usuario;
   usuario_prenda: usuario_prenda;
   array_usuario_prenda: any = [{
@@ -68,34 +70,37 @@ export class LavanderiaPrendaPage implements OnInit {
   enviarDatos() {//se envian los datos de la lavavandería seleccionada
     this.model_usuario.setUsuario(this.usuario);
     if (this.swP == 0) {
-      this.listaSeleccionada.shift();
+      this.servicio_prenda.shift();
       this.swP = 1;
     }
-    this.model_prenda_seleccionada.setListaSeleccionada(this.listaSeleccionada);
+    this.model_servicio_prenda.setListaSeleccionada(this.servicio_prenda);
     this.router.navigate(['/servicio-prenda']);
   }
 
-  onCheck(event: any, chdata: any, chId: any) {
+  onCheck(event: any, chdata: any, chId_prenda: any) {
     if (event.detail.checked) {
-      this.listaSeleccionada.push({
-        id: chId,
-        data: chdata,
+      this.servicio_prenda.push({
+        cantidad: 1,
         check: 'true',
-        canti: 1,
+        id_prenda: chId_prenda,
+        id_servicio: "",
+        obser: "",
+        precio: chdata.precio,
+        prenda_nombre: chdata.prenda_nombre,
         total: chdata.precio
       });
-      console.log(`Lista seleccionada: `, this.listaSeleccionada);
+      console.log(`Lista seleccionada: `, this.servicio_prenda);
 
     } else if (!event.detail.checked) { //Acción cuando se desmarcar el check
-      this.borrarElementoDeArray(this.listaSeleccionada, chId);
-      console.log(`Lista seleccionada: `, this.listaSeleccionada);
+      this.borrarElementoDeArray(this.servicio_prenda, chId_prenda);
+      console.log(`Lista seleccionada: `, this.servicio_prenda);
     }
   }
 
   borrarElementoDeArray(array, valor) {
     console.log(valor);
-    this.listaSeleccionada = array.filter((elemento) => {
-      return elemento.id !== valor;
+    this.servicio_prenda = array.filter((elemento) => {
+      return elemento.id_prenda !== valor;
     })
   }
 

@@ -4,4 +4,5 @@ export interface usuario_prenda {
   precio: number;
   prenda_nombre: string;
   urlFoto: string;
+  check: boolean;
 }

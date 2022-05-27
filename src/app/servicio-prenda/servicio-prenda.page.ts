@@ -1,24 +1,10 @@
-import { ModelPrendaSeleccionadaService } from './../modelos/model_prenda_seleccionada';
-import { LavanderiaPrendaPage } from './../lavanderia-prenda/lavanderia-prenda.page';
+import { ModelServicioPrendaService } from './../modelos/model_servicio_prenda';
 import { FirebaseService } from './../services/firebase.service';
 import { usuario_prenda } from './../interfaces/usuario-prenda';
 import { ModelUsuarioService } from './../modelos/model_usuario';
 import { Usuario } from './../interfaces/usuario';
 import { Component, OnInit, ViewChild, Injectable } from '@angular/core';
-import { IonList, AlertController } from '@ionic/angular';
-
-export interface itemCanti {
-  item: number;
-  canti: number;
-}
-
-export interface inputAlert {
-  id: number;
-  name: string;
-  type: string;
-  value: string;
-  checked: boolean;
-}
+import { AlertController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -32,30 +18,27 @@ export interface inputAlert {
 export class ServicioPrendaPage implements OnInit {
 
   constructor(private model_usuario: ModelUsuarioService,
-    private modelListaSeleccionada: ModelPrendaSeleccionadaService,
+    private modelServicioPrendaService: ModelServicioPrendaService,
     private firebaseService: FirebaseService,
     public alertController: AlertController) {
     this.traerDatosLavanderia();
     //this.cantidadPrenda = [];
-    this.traerListaPrendas();
+    this.traerServicioPrenda();
     this.calcularTotal();
-    console.log(this.listaPrenda);
+    console.log(this.array_servicio_prenda);
   }
 
   ngOnInit() {
   }
 
-  //cantidadPrenda: any = [{ index: '', canti: '', id: '' , total: ''}];
   index = 0;
   totalGeneral: number = 0;
-  //idInput: number = 0;
-  //itemPrenda: itemCanti;
   lavanderia: Usuario;
   prendas: any = [{
     id: "",
     data: {} as usuario_prenda,
   }];
-  listaPrenda: any = [];
+  array_servicio_prenda: any = [];
   swTotal = 0;
 
   traerDatosLavanderia() {
@@ -63,9 +46,9 @@ export class ServicioPrendaPage implements OnInit {
     this.lavanderia = this.model_usuario.getUsuario();
   }
 
-  traerListaPrendas() {
-    this.listaPrenda = [];
-    this.listaPrenda = this.modelListaSeleccionada.getListaSeleccionada();
+  traerServicioPrenda() {
+    this.array_servicio_prenda = [];
+    this.array_servicio_prenda = this.modelServicioPrendaService.getListaSeleccionada();
   }
 
   asignarCantidad(signo, cantiAsig, index) {
@@ -76,35 +59,45 @@ export class ServicioPrendaPage implements OnInit {
       if (cantiAsig > 1)
         cantiAsig = cantiAsig - 1;
     }
-    this.listaPrenda[index] = {
-      id: this.listaPrenda[index].id,
-      data: this.listaPrenda[index].data,
-      check: this.listaPrenda[index].check,
-      canti: cantiAsig,
-      total: this.listaPrenda[index].data.precio * cantiAsig
+    this.array_servicio_prenda[index] = {
+      cantidad: cantiAsig,
+      check: this.array_servicio_prenda[index].check,
+      id_prenda: this.array_servicio_prenda[index].id_prenda,
+      id_servicio: this.array_servicio_prenda[index].id_servicio,
+      obser: this.array_servicio_prenda[index].obser,
+      precio: this.array_servicio_prenda[index].precio,
+      prenda_nombre: this.array_servicio_prenda[index].prenda_nombre,
+      total: this.array_servicio_prenda[index].precio * cantiAsig
+      //data: this.array_servicio_prenda[index].data,
     }
-    console.log(this.listaPrenda[index]);
+    console.log(this.array_servicio_prenda[index]);
     this.calcularTotal();
   }
 
-  quitarPrenda(idPrenda) {
-    console.log(idPrenda);
-    this.borrarElementoDeArray(this.listaPrenda, idPrenda);
+  quitarPrenda(id_Prenda) {
+    console.log(id_Prenda);
+    this.borrarElementoDeArray(this.array_servicio_prenda, id_Prenda);
     this.calcularTotal();
-    console.log(this.listaPrenda);
+    console.log(this.array_servicio_prenda);
   }
 
   borrarElementoDeArray(array, idPrenda) {
-    this.listaPrenda = array.filter((elemento) => {
-      return elemento.id !== idPrenda;
+    this.array_servicio_prenda = array.filter((elemento) => {
+      elemento.cantidad = 1;
+      elemento.total = elemento.precio;
+      return elemento.id_prenda !== idPrenda;
     })
   }
 
   calcularTotal() {
     this.totalGeneral = 0;
-    this.listaPrenda.forEach(element => {
+    this.array_servicio_prenda.forEach(element => {
       this.totalGeneral = this.totalGeneral + element.total;
     });
+  }
+
+  guardarServicio() {
+
   }
 
 }//final

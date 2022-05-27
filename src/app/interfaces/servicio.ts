@@ -1,14 +1,12 @@
-
-
-
 export interface Servicio {
-  envio: string;
+  delivery: number;
   estado: string;
   fecha_hora: string;
-  uid_usu_cliente: string;
-  uid_usu_empresa: string;
-  monto_total: string;
-  obser: string;
   nombre_cliente: string;
   nombre_empresa: string;
+  obser: string;
+  total_general: number;
+  uid_usu_cliente: string;
+  uid_usu_empresa: string;
+
 }
