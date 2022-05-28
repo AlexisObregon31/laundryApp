@@ -16,9 +16,9 @@
           listServices.data.nombre_empresa,1)" *ngFor="let listServices of arrayServicios">
       <ion-grid>
         <ion-row>
-          <ion-label>{{ listServices.data.fecha_hora }}</ion-label>
+          <ion-label>{{ listServices.fecha_hora | date: 'dd/MM/yyyy' }}</ion-label>
           <ion-label class="cli_empresa">
-            {{ listServices.data.nombre_empresa }}
+            {{ listServices.nombre_empresa }}
           </ion-label>
         </ion-row>
       </ion-grid>

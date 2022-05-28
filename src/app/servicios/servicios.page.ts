@@ -16,10 +16,8 @@ import { FirebaseService } from '../services/firebase.service';
 })
 export class ServiciosPage implements OnInit, OnDestroy {
 
-  arrayServicios: any = [{
-    id: "",
-    data: {} as Servicio
-  }];
+  arrayServicios: any = [{ data: {} as Servicio }];
+  //   id: "",
 
   uidUser: string;
   tipoUser: string;
@@ -38,9 +36,12 @@ export class ServiciosPage implements OnInit, OnDestroy {
     });
     //console.log("Result" + this.usuarioValidado)
     this.saberTipoUsuario();
-    this.obtenerListaServicios();
     //this.formatearFecha();
     //this.consultarUsuario();
+  }
+
+  ngAfterViewInit() {
+    this.obtenerListaServicios();
   }
 
   ngOnInit() {
@@ -49,16 +50,29 @@ export class ServiciosPage implements OnInit, OnDestroy {
   ngOnDestroy() {
   }
 
-  obtenerListaServicios() {
+  async obtenerListaServicios() {
     console.log("Obteniendo lista de  Servicios");
     this.firebaseService.consultar("servicios", this.campoUser, "==", this.uidUser).subscribe((resConsulta) => {
       this.arrayServicios = [];
       resConsulta.forEach((datos: any) => {
-        //console.log(datosServicios.payload.doc.data().fecha_hora);
+        //var index = 0;
+        var fecha = datos.payload.doc.data().fecha_hora.toDate();
         this.arrayServicios.push({
           id: datos.payload.doc.id,
-          data: datos.payload.doc.data()
+          delivery: datos.payload.doc.data().delivery,
+          estado: datos.payload.doc.data().estado,
+          fecha_hora: fecha,
+          nombre_cliente: datos.payload.doc.data().nombre_cliente,
+          nombre_empresa: datos.payload.doc.data().nombre_empresa,
+          obser: datos.payload.doc.data().obser,
+          total_general: datos.payload.doc.data().total_general,
+          uid_usu_cliente: datos.payload.doc.data().uid_usu_cliente,
+          uid_usu_empresa: datos.payload.doc.data().uid_usu_empresa
         });
+        //this.arrayServicios[index].data.fecha_hora = fecha;
+        //console.log("A ver que sale");
+        //console.log(this.arrayServicios[index].data.fecha_hora);
+        //index = index + 1;
       })
     });
   }

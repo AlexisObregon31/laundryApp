@@ -1,4 +1,7 @@
+import { Timestamp } from "rxjs-compat";
+
 export interface Servicio {
+  id: string;
   delivery: number;
   estado: string;
   fecha_hora: Date;
