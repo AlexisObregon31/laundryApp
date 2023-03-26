@@ -116,7 +116,7 @@ export class ServicioPrendaPage implements OnInit {
     this.servicio_cab.uid_usu_empresa = this.lavanderia.uid;
 
     await this.firebaseService.insertar("servicios", this.servicio_cab).then((regInsert) => {//Insertando Servicio Cabecera
-      this.idServicio = regInsert.id;
+      this.idServicio = regInsert.id; //Obtenemos el ID del registro insertado
     }, (error) => {
       console.log(error);
     });

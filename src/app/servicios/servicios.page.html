@@ -11,17 +11,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-list>
-    <ion-item button (click)="clicBotonInsertar(
+  <ion-list class="position: relative">
+    <ion-item class="item" button (click)="clicBotonInsertar(
           listServices.data.nombre_empresa,1)" *ngFor="let listServices of arrayServicios">
-      <ion-grid>
-        <ion-row>
-          <ion-label>{{ listServices.fecha_hora | date: 'dd/MM/yyyy' }}</ion-label>
-          <ion-label class="cli_empresa">
-            {{ listServices.nombre_empresa }}
-          </ion-label>
-        </ion-row>
-      </ion-grid>
+      <div class="div">
+        <ion-label color="medium">{{ listServices.fecha_hora | date: 'dd/MM/yyyy' }}</ion-label>
+        <ion-label class="empresa">
+          {{ listServices.nombre_empresa }}
+        </ion-label>
+        <ion-label class="total">
+          {{ listServices.total_general }} Gs
+        </ion-label>
+      </div>
     </ion-item>
   </ion-list>
   <ion-item style="position: absolute; right:21%; top:88%;">

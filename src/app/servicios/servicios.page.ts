@@ -65,7 +65,7 @@ export class ServiciosPage implements OnInit, OnDestroy {
           nombre_cliente: datos.payload.doc.data().nombre_cliente,
           nombre_empresa: datos.payload.doc.data().nombre_empresa,
           obser: datos.payload.doc.data().obser,
-          total_general: datos.payload.doc.data().total_general,
+          total_general: new Intl.NumberFormat('de-DE').format(datos.payload.doc.data().total_general),
           uid_usu_cliente: datos.payload.doc.data().uid_usu_cliente,
           uid_usu_empresa: datos.payload.doc.data().uid_usu_empresa
         });
